@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.HoldApartMapper">
+	<resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.HoldApart">
+		<id column="oid" property="oid" jdbcType="VARCHAR" />
+		<result column="investorOid" property="investorOid" jdbcType="VARCHAR" />
+		<result column="publisherOid" property="publisherOid" jdbcType="VARCHAR" />
+		<result column="productOid" property="productOid" jdbcType="VARCHAR" />
+		<result column="channelOid" property="channelOid" jdbcType="VARCHAR" />
+		<result column="holdOid" property="holdOid" jdbcType="VARCHAR" />
+		<result column="orderOid" property="orderOid" jdbcType="VARCHAR" />
+		<result column="investVolume" property="investVolume" jdbcType="DECIMAL" />
+		<result column="redeemStatus" property="redeemStatus" jdbcType="VARCHAR" />
+		<result column="accrualStatus" property="accrualStatus" jdbcType="VARCHAR" />
+		<result column="beginAccuralDate" property="beginAccuralDate" jdbcType="DATE" />
+		<result column="beginRedeemDate" property="beginRedeemDate" jdbcType="DATE" />
+		<result column="orderType" property="orderType" jdbcType="VARCHAR" />
+		<result column="totalIncome" property="totalIncome" jdbcType="DECIMAL" />
+		<result column="investConfirmDate" property="investConfirmDate" jdbcType="DATE" />
+		<result column="totalBaseIncome" property="totalBaseIncome" jdbcType="DECIMAL" />
+		<result column="totalRewardIncome" property="totalRewardIncome" jdbcType="DECIMAL" />
+		<result column="turnoverVolume" property="turnoverVolume" jdbcType="DECIMAL" />
+		<result column="yesterdayIncome" property="yesterdayIncome" jdbcType="DECIMAL" />
+		<result column="yesterdayBaseIncome" property="yesterdayBaseIncome" jdbcType="DECIMAL" />
+		<result column="yesterdayRewardIncome" property="yesterdayRewardIncome" jdbcType="DECIMAL" />
+		<result column="toConfirmIncome" property="toConfirmIncome" jdbcType="DECIMAL" />
+		<result column="snapshotVolume" property="snapshotVolume" jdbcType="DECIMAL" />
+		<result column="redeemableIncome" property="redeemableIncome" jdbcType="DECIMAL" />
+		<result column="expectIncome" property="expectIncome" jdbcType="DECIMAL" />
+		<result column="value" property="value" jdbcType="DECIMAL" />
+		<result column="incomeConfirmDate" property="incomeConfirmDate" jdbcType="DATE" />
+		<result column="holdStatus" property="holdStatus" jdbcType="VARCHAR" />
+		<result column="lockRewardOid" property="lockRewardOid" jdbcType="VARCHAR" />
+		<result column="closeLeftBaseVolume" property="closeLeftBaseVolume" jdbcType="DECIMAL" />
+		<result column="volumeConfirmTime" property="volumeConfirmTime" jdbcType="TIMESTAMP" />
+		<result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="orderVolume" property="orderVolume" jdbcType="DECIMAL" />
+		<result column="redeemLockVolume" property="redeemLockVolume" jdbcType="DECIMAL" />
+		<result column="orderSubType" property="orderSubType" jdbcType="VARCHAR" />
+		<result column="marketingHold" property="marketingHold" jdbcType="REAL" />
+		<result column="totalMarketingIncome" property="totalMarketingIncome" jdbcType="DECIMAL" />
+		<result column="yesterdayMarketingIncome" property="yesterdayMarketingIncome" jdbcType="DECIMAL" />
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		oid, investorOid, publisherOid, productOid, channelOid,
+		holdOid, orderOid,
+		investVolume,
+		redeemStatus, accrualStatus,
+		beginAccuralDate, beginRedeemDate, orderType,
+		totalIncome,
+		investConfirmDate, totalBaseIncome, totalRewardIncome,
+		turnoverVolume,
+		yesterdayIncome,
+		yesterdayBaseIncome, yesterdayRewardIncome,
+		toConfirmIncome,
+		snapshotVolume, redeemableIncome,
+		expectIncome, value,
+		incomeConfirmDate, holdStatus, lockRewardOid,closeLeftBaseVolume,
+		volumeConfirmTime,
+		updateTime, createTime,
+		orderVolume, redeemLockVolume,orderSubType,marketingHold,totalMarketingIncome,yesterdayMarketingIncome
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where oid = #{oid,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insert" parameterType="com.le.jr.am.profit.domain.HoldApart">
+		insert into
+		T_MONEY_PUBLISHER_HOLDAPART (oid, investorOid,
+		publisherOid,
+		productOid, channelOid, holdOid,
+		orderOid, investVolume, redeemStatus,
+		accrualStatus, beginAccuralDate, beginRedeemDate,
+		orderType,
+		totalIncome, investConfirmDate,
+		totalBaseIncome, totalRewardIncome,
+		turnoverVolume,
+		yesterdayIncome, yesterdayBaseIncome,
+		yesterdayRewardIncome,
+		toConfirmIncome, snapshotVolume,
+		redeemableIncome,
+		expectIncome, value, incomeConfirmDate,
+		holdStatus,
+		closeLeftBaseVolume, volumeConfirmTime,
+		updateTime, createTime,orderVolume,lockRewardOid,orderSubType,marketingHold,totalMarketingIncome,yesterdayMarketingIncome)
+		values
+		(#{oid,jdbcType=VARCHAR}, #{investorOid,jdbcType=VARCHAR},
+		#{publisherOid,jdbcType=VARCHAR},
+		#{productOid,jdbcType=VARCHAR},
+		#{channelOid,jdbcType=VARCHAR},
+		#{holdOid,jdbcType=VARCHAR},
+		#{orderOid,jdbcType=VARCHAR}, #{investVolume,jdbcType=DECIMAL},
+		#{redeemStatus,jdbcType=VARCHAR},
+		#{accrualStatus,jdbcType=VARCHAR},
+		#{beginAccuralDate,jdbcType=DATE}, #{beginRedeemDate,jdbcType=DATE},
+		#{orderType,jdbcType=VARCHAR}, #{totalIncome,jdbcType=DECIMAL},
+		#{investConfirmDate,jdbcType=DATE},
+		#{totalBaseIncome,jdbcType=DECIMAL},
+		#{totalRewardIncome,jdbcType=DECIMAL},
+		#{turnoverVolume,jdbcType=DECIMAL},
+		#{yesterdayIncome,jdbcType=DECIMAL},
+		#{yesterdayBaseIncome,jdbcType=DECIMAL},
+		#{yesterdayRewardIncome,jdbcType=DECIMAL},
+		#{toConfirmIncome,jdbcType=DECIMAL},
+		#{snapshotVolume,jdbcType=DECIMAL},
+		#{redeemableIncome,jdbcType=DECIMAL},
+		#{expectIncome,jdbcType=DECIMAL},
+		#{value,jdbcType=DECIMAL},
+		#{incomeConfirmDate,jdbcType=DATE},
+		#{holdStatus,jdbcType=VARCHAR},
+		#{closeLeftBaseVolume,jdbcType=DECIMAL},
+		#{volumeConfirmTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
+		#{orderVolume,jdbcType=DECIMAL},#{lockRewardOid,jdbcType=VARCHAR},#{orderSubType,jdbcType=VARCHAR},
+		#{marketingHold,jdbcType=REAL},#{totalMarketingIncome,jdbcType=DECIMAL},#{yesterdayMarketingIncome,jdbcType=DECIMAL})
+
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.HoldApart">
+		update T_MONEY_PUBLISHER_HOLDAPART
+		<set>
+			<if test="investorOid != null">
+				investorOid = #{investorOid,jdbcType=VARCHAR},
+			</if>
+			<if test="publisherOid != null">
+				publisherOid = #{publisherOid,jdbcType=VARCHAR},
+			</if>
+			<if test="productOid != null">
+				productOid = #{productOid,jdbcType=VARCHAR},
+			</if>
+			<if test="channelOid != null">
+				channelOid = #{channelOid,jdbcType=VARCHAR},
+			</if>
+			<if test="holdOid != null">
+				holdOid = #{holdOid,jdbcType=VARCHAR},
+			</if>
+			<if test="orderOid != null">
+				orderOid = #{orderOid,jdbcType=VARCHAR},
+			</if>
+			<if test="investVolume != null">
+				investVolume = #{investVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="redeemStatus != null">
+				redeemStatus = #{redeemStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="accrualStatus != null">
+				accrualStatus = #{accrualStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="beginAccuralDate != null">
+				beginAccuralDate = #{beginAccuralDate,jdbcType=DATE},
+			</if>
+			<if test="beginRedeemDate != null">
+				beginRedeemDate = #{beginRedeemDate,jdbcType=DATE},
+			</if>
+			<if test="orderType != null">
+				orderType = #{orderType,jdbcType=VARCHAR},
+			</if>
+			<if test="totalIncome != null">
+				totalIncome = #{totalIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="investConfirmDate != null">
+				investConfirmDate = #{investConfirmDate,jdbcType=DATE},
+			</if>
+			<if test="totalBaseIncome != null">
+				totalBaseIncome = #{totalBaseIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="totalRewardIncome != null">
+				totalRewardIncome =
+				#{totalRewardIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="turnoverVolume != null">
+				turnoverVolume = #{turnoverVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="yesterdayIncome != null">
+				yesterdayIncome = #{yesterdayIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="yesterdayBaseIncome != null">
+				yesterdayBaseIncome =
+				#{yesterdayBaseIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="yesterdayRewardIncome != null">
+				yesterdayRewardIncome =
+				#{yesterdayRewardIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="toConfirmIncome != null">
+				toConfirmIncome = #{toConfirmIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="snapshotVolume != null">
+				snapshotVolume = #{snapshotVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="redeemableIncome != null">
+				redeemableIncome = #{redeemableIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="expectIncome != null">
+				expectIncome = #{expectIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="value != null">
+				value = #{value,jdbcType=DECIMAL},
+			</if>
+			<if test="incomeConfirmDate != null">
+				incomeConfirmDate = #{incomeConfirmDate,jdbcType=DATE},
+			</if>
+			<if test="holdStatus != null">
+				holdStatus = #{holdStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="closeLeftBaseVolume != null">
+				closeLeftBaseVolume =
+				#{closeLeftBaseVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="volumeConfirmTime != null">
+				volumeConfirmTime =
+				#{volumeConfirmTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				updateTime = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="redeemLockVolume != null">
+				redeemLockVolume = #{redeemLockVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="lockRewardOid != null">
+				lockRewardOid = #{lockRewardOid,jdbcType=VARCHAR},
+			</if>
+			<if test="orderSubType != null">
+				orderSubType = #{orderSubType,jdbcType=VARCHAR},
+			</if>
+			<if test="marketingHold != null">
+				marketingHold = #{marketingHold,jdbcType=REAL},
+			</if>
+			<if test="totalMarketingIncome != null">
+				totalMarketingIncome = #{totalMarketingIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="yesterdayMarketingIncome != null">
+				yesterdayMarketingIncome = #{yesterdayMarketingIncome,jdbcType=DECIMAL}
+			</if>
+		</set>
+		where oid = #{oid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateList" parameterType="java.util.List">
+
+		<foreach collection="list" item="obj" index="index" open="" close="" separator=";">
+			update T_MONEY_PUBLISHER_HOLDAPART
+			<set>
+				<if test="obj.investorOid != null">
+					investorOid = #{obj.investorOid,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.publisherOid != null">
+					publisherOid = #{obj.publisherOid,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.productOid != null">
+					productOid = #{obj.productOid,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.channelOid != null">
+					channelOid = #{obj.channelOid,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.holdOid != null">
+					holdOid = #{obj.holdOid,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.orderOid != null">
+					orderOid = #{obj.orderOid,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.investVolume != null">
+					investVolume = #{obj.investVolume,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.redeemStatus != null">
+					redeemStatus = #{obj.redeemStatus,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.accrualStatus != null">
+					accrualStatus = #{obj.accrualStatus,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.beginAccuralDate != null">
+					beginAccuralDate = #{obj.beginAccuralDate,jdbcType=DATE},
+				</if>
+				<if test="obj.beginRedeemDate != null">
+					beginRedeemDate = #{obj.beginRedeemDate,jdbcType=DATE},
+				</if>
+				<if test="obj.orderType != null">
+					orderType = #{obj.orderType,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.totalIncome != null">
+					totalIncome = #{obj.totalIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.investConfirmDate != null">
+					investConfirmDate = #{obj.investConfirmDate,jdbcType=DATE},
+				</if>
+				<if test="obj.totalBaseIncome != null">
+					totalBaseIncome = #{obj.totalBaseIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.totalRewardIncome != null">
+					totalRewardIncome =
+					#{obj.totalRewardIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.turnoverVolume != null">
+					turnoverVolume = #{obj.turnoverVolume,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.yesterdayIncome != null">
+					yesterdayIncome = #{obj.yesterdayIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.yesterdayBaseIncome != null">
+					yesterdayBaseIncome =
+					#{obj.yesterdayBaseIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.yesterdayRewardIncome != null">
+					yesterdayRewardIncome =
+					#{obj.yesterdayRewardIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.toConfirmIncome != null">
+					toConfirmIncome = #{obj.toConfirmIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.snapshotVolume != null">
+					snapshotVolume = #{obj.snapshotVolume,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.redeemableIncome != null">
+					redeemableIncome = #{obj.redeemableIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.expectIncome != null">
+					expectIncome = #{obj.expectIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.value != null">
+					value = #{obj.value,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.incomeConfirmDate != null">
+					incomeConfirmDate = #{obj.incomeConfirmDate,jdbcType=DATE},
+				</if>
+				<if test="obj.holdStatus != null">
+					holdStatus = #{obj.holdStatus,jdbcType=VARCHAR},
+				</if>
+				<if test="obj.closeLeftBaseVolume != null">
+					closeLeftBaseVolume =
+					#{obj.closeLeftBaseVolume,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.volumeConfirmTime != null">
+					volumeConfirmTime =
+					#{obj.volumeConfirmTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="obj.updateTime != null">
+					updateTime = #{obj.updateTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="obj.createTime != null">
+					createTime = #{obj.createTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="obj.redeemLockVolume != null">
+					redeemLockVolume =#{obj.redeemLockVolume,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.lockRewardOid != null">
+					lockRewardOid = #{obj.lockRewardOid,jdbcType=VARCHAR},
+				</if>
+
+				<if test="obj.orderSubType != null">
+					orderSubType = #{obj.orderSubType,jdbcType=VARCHAR}
+				</if>
+
+				<if test="obj.marketingHold != null">
+					marketingHold = #{obj.marketingHold,jdbcType=REAL},
+				</if>
+				<if test="obj.totalMarketingIncome != null">
+					totalMarketingIncome = #{obj.totalMarketingIncome,jdbcType=DECIMAL},
+				</if>
+				<if test="obj.yesterdayMarketingIncome != null">
+					yesterdayMarketingIncome = #{obj.yesterdayMarketingIncome,jdbcType=DECIMAL}
+				</if>
+
+			</set>
+			where oid = #{obj.oid,jdbcType=VARCHAR}
+		</foreach>
+
+
+	</update>
+
+
+	<!-- 查询开始赎回日期 小于等于今天的单子-->
+	<select id="findByBeforerBeginRedeemDateInclusive" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where <![CDATA[ beginRedeemDate <=#{today,jdbcType=TIMESTAMP} ]]>
+		AND redeemStatus = 'no'
+		AND <![CDATA[ oid > #{oid,jdbcType=VARCHAR}]]>
+		AND holdStatus IN ('holding', 'partHolding')
+		order by oid limit 1000
+	</select>
+
+	<!-- 查询开始计息单子 -->
+	<select id="findByBeforeBeginAccuralDateInclusive" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where <![CDATA[ beginAccuralDate <=#{date} ]]>
+		AND accrualStatus = 'no'
+		AND <![CDATA[ oid > #{oid,jdbcType=VARCHAR}]]>
+		AND holdStatus IN ('holding', 'partHolding') order by oid limit 1000
+	</select>
+
+	<select id="findApart" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where investorOid = #{investorOid}
+		AND productOid = #{productOid}
+		AND holdStatus in('holding','partHolding')
+		AND redeemStatus = 'yes'
+		order by createTime
+	</select>
+	<select id="getCountByProduct4Practice" resultType="decimal">
+		SELECT SUM(snapshotVolume)
+		FROM T_MONEY_PUBLISHER_HOLDAPART
+		WHERE productOid = #{productOid}
+		AND snapshotVolume > 0
+		AND beginAccuralDate <![CDATA[ <= ]]>#{incomeDate}
+		AND holdStatus in ('holding','partHolding')
+	</select>
+	<select id="getCountByProduct4Interest" resultType="decimal">
+		SELECT SUM(snapshotVolume)
+		FROM T_MONEY_PUBLISHER_HOLDAPART
+		WHERE
+		productOid = #{productOid}
+		AND snapshotVolume > 0
+		AND beginAccuralDate <![CDATA[ <= ]]>
+		#{incomeDate}
+		AND holdStatus in ('holding','partHolding')
+	</select>
+
+	<update id="abandon">
+		update
+		T_MONEY_PUBLISHER_HOLDAPART
+		set holdStatus ='abandoned'
+		where orderOid =#{tradeOrderId}
+	</update>
+
+	<!-- /** * 更新可赎回状态 */ -->
+	<update id="unlockRedeem">
+		update
+		T_MONEY_PUBLISHER_HOLDAPART
+		set redeemStatus='yes'
+		where oid=#{holdApardOid}
+	</update>
+	<update id="unlockAccrual">
+		update
+		T_MONEY_PUBLISHER_HOLDAPART
+		set accrualStatus ='yes',snapshotVolume=#{investVolume}
+		where oid=#{holdApardOid}
+	</update>
+
+	<!-- 查找可分配收益的分仓列表 起息日，状态，份额 ，总仓ID,查询非理财金的分仓 -->
+	<select id="findInterestableApart" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM T_MONEY_PUBLISHER_HOLDAPART
+		where holdOid = #{holdOid}
+		AND snapshotVolume > 0
+		AND beginAccuralDate  <![CDATA[ <= ]]>#{curDate}
+		AND holdStatus in('holding','partHolding')
+	</select>
+
+	<!-- 分配收益，更新分仓收益信息 -->
+	<update id="updateHoldApart4Interest"> 
+		update
+		T_MONEY_PUBLISHER_HOLDAPART
+		set investVolume =investVolume +#{interestedVolume},
+		value =investVolume*#{netUnitAmount},
+		totalIncome = totalIncome +#{interestedAmount},
+		yesterdayIncome= #{interestedAmount},
+		totalBaseIncome=totalBaseIncome+ #{incomeAmount},
+		yesterdayBaseIncome=#{incomeAmount},
+		totalRewardIncome =totalRewardIncome+#{rewardAmount},
+		yesterdayRewardIncome=#{rewardAmount},
+
+		totalMarketingIncome =totalMarketingIncome+ #{marketingAmount},
+		yesterdayMarketingIncome = yesterdayMarketingIncome + #{marketingAmount},
+		marketingHold = #{marketingHold},
+
+		snapshotVolume=snapshotVolume+#{snapshotVolume},
+		incomeConfirmDate =#{incomeDate} where oid =#{apartOid}
+	</update>
+
+	<select id="findInterestableVolumeByChannelOid" resultMap="BaseResultMap">
+		SELECT sum(snapshotVolume)
+		FROM T_MONEY_PUBLISHER_HOLDAPART
+		WHERE channel = #{channelOid}
+		AND holdStatus in ('holding','partHolding')
+		AND beginAccuralDate  <![CDATA[ <= ]]>
+		#{curDate}
+	</select>
+	<update id="update4Confirm">
+		update T_MONEY_PUBLISHER_HOLDAPART
+		set
+		holdStatus ='holding',
+		redeemStatus = #{redeemStatus},
+		accrualStatus =#{accrualStatus},
+		snapshotVolume=#{accruableHoldVolume},
+		volumeConfirmTime = sysdate()
+		where orderOid=#{orderId}
+	</update>
+
+
+	<update id="snapshotVolume">
+		update T_MONEY_PUBLISHER_HOLDAPART set
+		snapshotVolume = investVolume
+		WHERE productOid= #{productOid}
+		AND beginAccuralDate  = #{incomeDate}
+		AND holdStatus in('holding','partHolding')
+	</update>
+
+
+	<select id="calcSerFee" resultMap="BaseResultMap">
+		SELECT channelOid, productOid, SUM(investVolume) as investVolume
+		FROM T_MONEY_PUBLISHER_HOLDAPART
+		where holdStatus in ('holding','partHolding')
+		GROUP BY productOid
+	</select>
+
+
+
+
+	<select id="findByTradeOrder" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM T_MONEY_PUBLISHER_HOLDAPART
+		where orderOid = #{orderId}
+	</select>
+	<select id="loadHoldApartData2Cache" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM T_MONEY_PUBLISHER_HOLDAPART
+		where updateTime  <![CDATA[>=]]>
+		#{startDate};
+	</select>
+
+
+	<select id="selectHoldAparts" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+
+		where 1=1
+		<if test="investorOid != null">
+			AND investorOid = #{investorOid,jdbcType=VARCHAR}
+		</if>
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+		<if test="holdOid != null">
+			AND holdOid = #{holdOid,jdbcType=VARCHAR}
+		</if>
+		ORDER BY updateTime DESC
+
+
+	</select>
+	<select id="selectHoldAparts4Api" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where 1=1
+		<if test="investorOid != null">
+			AND investorOid = #{investorOid,jdbcType=VARCHAR}
+		</if>
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+		<if test="holdOid != null">
+			AND holdOid = #{holdOid,jdbcType=VARCHAR}
+		</if>
+		ORDER BY updateTime DESC
+		<if test="offset!=null and pageSize!=null">
+			LIMIT #{offset,jdbcType=INTEGER} ,
+			#{pageSize,jdbcType=INTEGER}
+		</if>
+
+	</select>
+
+	<select id="selectCountHoldApartsApi" resultType="java.lang.Integer">
+
+		select count(1)
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where 1=1
+		<if test="investorOid != null">
+			AND investorOid = #{investorOid,jdbcType=VARCHAR}
+		</if>
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+		<if test="holdOid != null">
+			AND holdOid = #{holdOid,jdbcType=VARCHAR}
+		</if>
+
+	</select>
+	<select id="getTotalCountByProduct4Practice" resultType="bigdecimal">
+
+		SELECT SUM(investVolume) FROM T_MONEY_PUBLISHER_HOLDAPART
+		WHERE productOid = #{productOid} and beginAccuralDate  <![CDATA[<=]]>
+		#{incomeDate}
+
+		and holdStatus in ('toConfirm', 'holding','partHolding')
+
+	</select>
+
+
+	<select id="selectByOrderOid" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where orderOid = #{orderOid,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectByProductOidAndMinute" resultMap="BaseResultMap" parameterType="com.le.jr.am.profit.domain.vo.ProductTaskVo">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where productOid = #{productOid,jdbcType=VARCHAR}
+		and DATE_FORMAT(createTime, '%Y-%m-%d %H:%i') = DATE_FORMAT(#{date}, '%Y-%m-%d %H:%i')
+	</select>
+	
+	<select id="selectByProductOidAndDate" resultMap="BaseResultMap" parameterType="com.le.jr.am.profit.domain.vo.ProductTaskVo">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLDAPART
+		where productOid = #{productOid,jdbcType=VARCHAR}
+		<choose>
+		  	<when test="isRefreshAll != null and isRefreshAll == 'yes'" >
+		  		<![CDATA[and DATE_FORMAT(createTime, '%Y-%m-%d') <= DATE_FORMAT(#{date},'%Y-%m-%d')  ]]>
+		  	</when>
+		  	<otherwise>
+		  		 and DATE_FORMAT(createTime, '%Y-%m-%d') = DATE_FORMAT(#{date},'%Y-%m-%d')
+		  	</otherwise>
+	    </choose>
+	</select>
+	
+	
+</mapper>

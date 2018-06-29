@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.IncomeAllocateMapper">
+	<resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.IncomeAllocate">
+		<id column="oid" property="oid" jdbcType="VARCHAR" />
+		<result column="eventOid" property="eventOid" jdbcType="VARCHAR" />
+		<result column="productOid" property="productOid" jdbcType="VARCHAR" />
+		<result column="baseDate" property="baseDate" jdbcType="DATE" />
+		<result column="capital" property="capital" jdbcType="DECIMAL" />
+		<result column="allocateIncome" property="allocateIncome"
+			jdbcType="DECIMAL" />
+		<result column="rewardIncome" property="rewardIncome" jdbcType="DECIMAL" />
+		<result column="ratio" property="ratio" jdbcType="DECIMAL" />
+		<result column="wincome" property="wincome" jdbcType="DECIMAL" />
+		<result column="days" property="days" jdbcType="INTEGER" />
+		<result column="successAllocateIncome" property="successAllocateIncome"
+			jdbcType="DECIMAL" />
+		<result column="successAllocateRewardIncome" property="successAllocateRewardIncome"
+			jdbcType="DECIMAL" />
+		<result column="leftAllocateIncome" property="leftAllocateIncome"
+			jdbcType="DECIMAL" />
+		<result column="successAllocateInvestors" property="successAllocateInvestors"
+			jdbcType="INTEGER" />
+		<result column="failAllocateInvestors" property="failAllocateInvestors"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		oid, eventOid, productOid, baseDate, capital, allocateIncome,
+		rewardIncome, ratio,
+		wincome, days, successAllocateIncome, successAllocateRewardIncome,
+		leftAllocateIncome,
+		successAllocateInvestors, failAllocateInvestors
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_GAM_ASSETPOOL_INCOME_ALLOCATE
+		where oid = #{oid,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByEventOid" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_GAM_ASSETPOOL_INCOME_ALLOCATE
+		where eventOid = #{eventOid,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="selectIncomeAllocates" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_GAM_ASSETPOOL_INCOME_ALLOCATE
+
+		where 1=1
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR},
+		</if>
+
+		<if test="baseDate != null">
+			AND baseDate = #{baseDate,jdbcType=VARCHAR},
+		</if>
+
+		<if test="productOids!=null">
+			AND productOid IN
+			<foreach item="item" index="index" collection="productOids"
+				open="(" separator="," close=")">
+				#{item,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+
+		ORDER BY baseDate DESC
+
+
+	</select>
+	<select id="selectIncomeAllocates4Api" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_GAM_ASSETPOOL_INCOME_ALLOCATE
+
+		where 1=1
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="baseDate != null">
+			AND baseDate = #{baseDate,jdbcType=VARCHAR}
+		</if>
+
+		<if test="productOids!=null">
+			AND productOid IN
+			<foreach item="item" index="index" collection="productOids" open="(" separator="," close=")">
+				#{item,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+
+		ORDER BY baseDate DESC
+		<if test="offset!=null and pageSize!=null">
+			LIMIT #{offset,jdbcType=INTEGER} ,
+			#{pageSize,jdbcType=INTEGER}
+		</if>
+
+	</select>
+
+	<select id="selectCountIncomeAllocates4Api" resultType="java.lang.Integer">
+
+		select
+		count(1)
+		from T_GAM_ASSETPOOL_INCOME_ALLOCATE
+
+		where 1=1
+
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="baseDate != null">
+			AND baseDate = #{baseDate,jdbcType=VARCHAR}
+		</if>
+
+		<if test="productOids!=null">
+			AND productOid IN
+			<foreach item="item" index="index" collection="productOids" open="(" separator="," close=")">
+				#{item,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+
+
+
+	</select>
+
+
+
+
+	<insert id="insert" parameterType="com.le.jr.am.profit.domain.IncomeAllocate">
+		insert into T_GAM_ASSETPOOL_INCOME_ALLOCATE (oid, eventOid,
+		productOid,
+		baseDate, capital, allocateIncome,
+		rewardIncome, ratio, wincome,
+		days, successAllocateIncome, successAllocateRewardIncome,
+		leftAllocateIncome, successAllocateInvestors,
+		failAllocateInvestors)
+		values (#{oid,jdbcType=VARCHAR}, #{eventOid,jdbcType=VARCHAR},
+		#{productOid,jdbcType=VARCHAR},
+		#{baseDate,jdbcType=DATE}, #{capital,jdbcType=DECIMAL}, #{allocateIncome,jdbcType=DECIMAL},
+		#{rewardIncome,jdbcType=DECIMAL}, #{ratio,jdbcType=DECIMAL},
+		#{wincome,jdbcType=DECIMAL},
+		#{days,jdbcType=INTEGER}, #{successAllocateIncome,jdbcType=DECIMAL},
+		#{successAllocateRewardIncome,jdbcType=DECIMAL},
+		#{leftAllocateIncome,jdbcType=DECIMAL},
+		#{successAllocateInvestors,jdbcType=INTEGER},
+		#{failAllocateInvestors,jdbcType=INTEGER})
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.IncomeAllocate">
+		update T_GAM_ASSETPOOL_INCOME_ALLOCATE
+		<set>
+			<if test="eventOid != null">
+				eventOid = #{eventOid,jdbcType=VARCHAR},
+			</if>
+			<if test="productOid != null">
+				productOid = #{productOid,jdbcType=VARCHAR},
+			</if>
+			<if test="baseDate != null">
+				baseDate = #{baseDate,jdbcType=DATE},
+			</if>
+			<if test="capital != null">
+				capital = #{capital,jdbcType=DECIMAL},
+			</if>
+			<if test="allocateIncome != null">
+				allocateIncome = #{allocateIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="rewardIncome != null">
+				rewardIncome = #{rewardIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="ratio != null">
+				ratio = #{ratio,jdbcType=DECIMAL},
+			</if>
+			<if test="wincome != null">
+				wincome = #{wincome,jdbcType=DECIMAL},
+			</if>
+			<if test="days != null">
+				days = #{days,jdbcType=INTEGER},
+			</if>
+			<if test="successAllocateIncome != null">
+				successAllocateIncome = #{successAllocateIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="successAllocateRewardIncome != null">
+				successAllocateRewardIncome =
+				#{successAllocateRewardIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="leftAllocateIncome != null">
+				leftAllocateIncome = #{leftAllocateIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="successAllocateInvestors != null">
+				successAllocateInvestors =
+				#{successAllocateInvestors,jdbcType=INTEGER},
+			</if>
+			<if test="failAllocateInvestors != null">
+				failAllocateInvestors = #{failAllocateInvestors,jdbcType=INTEGER},
+			</if>
+		</set>
+		where oid = #{oid,jdbcType=VARCHAR}
+	</update>
+
+
+
+	<!-- 联表查询 -->
+
+	<select id="getLatestIncomeDate" resultType="java.util.Date">
+		SELECT MAX(t1.baseDate) FROM T_GAM_ASSETPOOL_INCOME_ALLOCATE t1,
+		T_GAM_ASSETPOOL_INCOME_EVENT t2
+		WHERE t1.productOid = #{productOid} and t1.eventOid = t2.oid AND t2.status
+		= 'ALLOCATED'
+	</select>
+	
+	<select id="findLastValidIncomeAllocate" resultMap="BaseResultMap">
+		SELECT 	t1.*
+		FROM T_GAM_ASSETPOOL_INCOME_ALLOCATE t1,
+		T_GAM_ASSETPOOL_INCOME_EVENT t2
+		WHERE t1.productOid = #{productOid} and t1.eventOid = t2.oid AND t2.status
+		!= 'FAIL' and  t2.status!='DELETE'
+		order by t1.baseDate desc
+	</select>
+
+
+	<select id="findLatestIncomeAllocates" resultMap="BaseResultMap" >
+		SELECT t1.* FROM
+		(SELECT a.productOid,MAX(a.baseDate) baseDate FROM
+		T_GAM_ASSETPOOL_INCOME_ALLOCATE a
+		JOIN T_GAM_ASSETPOOL_INCOME_EVENT e ON e.oid=a.eventOid AND
+		e.status='ALLOCATED'
+		WHERE a.productOid IN
+		<foreach item="item" index="index" collection="productOids"
+			open="(" separator="," close=")">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+
+		GROUP BY a.productOid ) t2
+		JOIN T_GAM_ASSETPOOL_INCOME_ALLOCATE t1 ON t1.productOid=t2.productOid AND
+		t1.baseDate=t2.baseDate
+
+
+	</select>
+	
+	
+	
+
+
+</mapper>

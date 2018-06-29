@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="am-profit-web:war">
+    <output-path>$PROJECT_DIR$/am-profit-web/target</output-path>
+    <root id="archive" name="am-profit-web-0.0.3-SNAPSHOT.war">
+      <element id="artifact" artifact-name="am-profit-web:war exploded" />
+    </root>
+  </artifact>
+</component>

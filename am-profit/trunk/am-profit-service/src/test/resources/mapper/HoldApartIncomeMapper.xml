@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.HoldApartIncomeMapper">
+	<resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.HoldApartIncome">
+		<id column="oid" property="oid" jdbcType="VARCHAR" />
+		<result column="investorOid" property="investorOid" jdbcType="VARCHAR" />
+		<result column="holdOid" property="holdOid" jdbcType="VARCHAR" />
+		<result column="productOid" property="productOid" jdbcType="VARCHAR" />
+		<result column="incomeOid" property="incomeOid" jdbcType="VARCHAR" />
+		<result column="holdApartOid" property="holdApartOid" jdbcType="VARCHAR" />
+		<result column="holdIncomeOid" property="holdIncomeOid" jdbcType="VARCHAR" />
+		<result column="rewardRuleOid" property="rewardRuleOid" jdbcType="VARCHAR" />
+		<result column="levelIncomeOid" property="levelIncomeOid" jdbcType="VARCHAR" />
+		<result column="orderOid" property="orderOid" jdbcType="VARCHAR" />
+		<result column="incomeAmount" property="incomeAmount" jdbcType="DECIMAL" />
+		<result column="rewardAmount" property="rewardAmount" jdbcType="DECIMAL" />
+		<result column="accureVolume" property="accureVolume" jdbcType="DECIMAL" />
+		<result column="confirmDate" property="confirmDate" jdbcType="DATE" />
+		<result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="orderVolume" property="orderVolume" jdbcType="DECIMAL" />
+		<result column="holdVolume" property="holdVolume" jdbcType="DECIMAL" />
+		<result column="provisionInterestVolume" property="provisionInterestVolume" jdbcType="DECIMAL" />
+		<result column="closeInterestVolume" property="closeInterestVolume" jdbcType="DECIMAL" />
+		<result column="marketingAmount" property="marketingAmount" jdbcType="DECIMAL" />
+
+
+		
+		
+	</resultMap>
+	<sql id="Base_Column_List">
+		oid, investorOid, holdOid, productOid, incomeOid,
+		holdApartOid,
+		holdIncomeOid, rewardRuleOid,
+		levelIncomeOid, orderOid,
+		incomeAmount, rewardAmount, accureVolume, confirmDate,
+		updateTime,
+		createTime,
+		orderVolume,
+		holdVolume,
+		provisionInterestVolume,
+		closeInterestVolume,marketingAmount
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME
+		where oid =
+		#{oid,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insert" parameterType="com.le.jr.am.profit.domain.HoldApartIncome">
+		insert into
+		T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME (oid,
+		investorOid, holdOid,
+		productOid, incomeOid, holdApartOid,
+		holdIncomeOid, rewardRuleOid,
+		levelIncomeOid,
+		orderOid, incomeAmount, rewardAmount,
+		accureVolume,
+		confirmDate, updateTime,
+		createTime,orderVolume,
+		holdVolume,
+		provisionInterestVolume,
+		closeInterestVolume,marketingAmount)
+		values (#{oid,jdbcType=VARCHAR},
+		#{investorOid,jdbcType=VARCHAR},
+		#{holdOid,jdbcType=VARCHAR},
+		#{productOid,jdbcType=VARCHAR}, #{incomeOid,jdbcType=VARCHAR},
+		#{holdApartOid,jdbcType=VARCHAR},
+		#{holdIncomeOid,jdbcType=VARCHAR},
+		#{rewardRuleOid,jdbcType=VARCHAR},
+		#{levelIncomeOid,jdbcType=VARCHAR},
+		#{orderOid,jdbcType=VARCHAR}, #{incomeAmount,jdbcType=DECIMAL},
+		#{rewardAmount,jdbcType=DECIMAL},
+		#{accureVolume,jdbcType=DECIMAL},
+		#{confirmDate,jdbcType=DATE},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{orderVolume,jdbcType=DECIMAL},
+		#{holdVolume,jdbcType=DECIMAL},
+		#{provisionInterestVolume,jdbcType=DECIMAL},
+		#{closeInterestVolume,jdbcType=DECIMAL},
+		#{marketingAmount,jdbcType=DECIMAL})
+	</insert>
+	
+	<insert id="saveList" parameterType="java.util.List" >
+   insert into
+		T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME (oid,
+		investorOid, holdOid,
+		productOid, incomeOid, holdApartOid,
+		holdIncomeOid, rewardRuleOid,
+		levelIncomeOid,
+		orderOid, incomeAmount, rewardAmount,
+		accureVolume,
+		confirmDate, updateTime,
+		createTime,orderVolume,
+		holdVolume,
+		provisionInterestVolume,
+		closeInterestVolume,marketingAmount)
+		values
+       <foreach collection="list" item="obj" index="index" separator=",">
+    (#{obj.oid,jdbcType=VARCHAR},
+		#{obj.investorOid,jdbcType=VARCHAR},
+		#{obj.holdOid,jdbcType=VARCHAR},
+		#{obj.productOid,jdbcType=VARCHAR}, #{obj.incomeOid,jdbcType=VARCHAR},
+		#{obj.holdApartOid,jdbcType=VARCHAR},
+		#{obj.holdIncomeOid,jdbcType=VARCHAR},
+		#{obj.rewardRuleOid,jdbcType=VARCHAR},
+		#{obj.levelIncomeOid,jdbcType=VARCHAR},
+		#{obj.orderOid,jdbcType=VARCHAR}, #{obj.incomeAmount,jdbcType=DECIMAL},
+		#{obj.rewardAmount,jdbcType=DECIMAL},
+		#{obj.accureVolume,jdbcType=DECIMAL},
+		#{obj.confirmDate,jdbcType=DATE},
+		#{obj.updateTime,jdbcType=TIMESTAMP},
+		#{obj.createTime,jdbcType=TIMESTAMP},
+		#{obj.orderVolume,jdbcType=DECIMAL},
+		#{obj.holdVolume,jdbcType=DECIMAL},
+		#{obj.provisionInterestVolume,jdbcType=DECIMAL},
+		#{obj.closeInterestVolume,jdbcType=DECIMAL},
+	    #{obj.marketingAmount,jdbcType=DECIMAL})
+  </foreach>
+  
+  </insert>
+  
+	<update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.HoldApartIncome">
+		update T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME
+		<set>
+			<if test="investorOid != null">
+				investorOid = #{investorOid,jdbcType=VARCHAR},
+			</if>
+			<if test="holdOid != null">
+				holdOid = #{holdOid,jdbcType=VARCHAR},
+			</if>
+			<if test="productOid != null">
+				productOid = #{productOid,jdbcType=VARCHAR},
+			</if>
+			<if test="incomeOid != null">
+				incomeOid = #{incomeOid,jdbcType=VARCHAR},
+			</if>
+			<if test="holdApartOid != null">
+				holdApartOid = #{holdApartOid,jdbcType=VARCHAR},
+			</if>
+			<if test="holdIncomeOid != null">
+				holdIncomeOid = #{holdIncomeOid,jdbcType=VARCHAR},
+			</if>
+			<if test="rewardRuleOid != null">
+				rewardRuleOid = #{rewardRuleOid,jdbcType=VARCHAR},
+			</if>
+			<if test="levelIncomeOid != null">
+				levelIncomeOid = #{levelIncomeOid,jdbcType=VARCHAR},
+			</if>
+			<if test="orderOid != null">
+				orderOid = #{orderOid,jdbcType=VARCHAR},
+			</if>
+			<if test="incomeAmount != null">
+				incomeAmount = #{incomeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="rewardAmount != null">
+				rewardAmount = #{rewardAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="accureVolume != null">
+				accureVolume = #{accureVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="confirmDate != null">
+				confirmDate = #{confirmDate,jdbcType=DATE},
+			</if>
+			<if test="updateTime != null">
+				updateTime = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="marketingAmount != null">
+				marketingAmount = #{marketingAmount,jdbcType=DECIMAL}
+			</if>
+
+
+		</set>
+		where oid = #{oid,jdbcType=VARCHAR}
+	</update>
+
+
+	<resultMap id="calcSumInterestMap" type="com.le.jr.am.profit.domain.output.CalcSumInterest">
+		<result property="totalAmount" column="totalAmount" jdbcType="DECIMAL" />
+		<result property="holdOid" column="holdOid" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="calcSumInterest" resultMap="calcSumInterestMap">
+
+		SELECT SUM(incomeAmount)
+		AS totalAmount, holdOid
+		FROM T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME
+		WHERE productOid =#{productOid,jdbcType=VARCHAR}
+		AND confirmDate
+		=#{incomeDate,jdbcType=VARCHAR}
+		GROUP BY
+		holdOid
+
+	</select>
+
+	<select id="getByPoidAndConfirmDate" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		FROM T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME
+		WHERE productOid
+		=#{productOid,jdbcType=VARCHAR}
+		AND confirmDate =
+		#{confirmDate,jdbcType=VARCHAR}
+
+	</select>
+
+
+	<select id="findApartIncomeByRewardOid" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" /> 
+		from T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME where investorOid =
+		#{investorOid} and productOid = #{productOid}
+		<if test="rewardRuleOid!=null and rewardRuleOid!=''">
+		and rewardRuleOid =#{rewardRuleOid}
+		</if> 
+		 and confirmDate =#{incomeDate}
+	</select>
+	
+	
+
+
+	<!-- 联表查询 -->
+	<select id="queryApartIncome" resultMap="BaseResultMap">
+
+		select t1.*
+		from
+		T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME t1,
+		T_MONEY_INVESTOR_TRADEORDER t2
+		where t1.orderOid = t2.oid and
+		t1.investorOid = #{investorOid} and t2.orderCode = #{tradeOrderOid}
+		and
+		confirmDate = #{incomeDate}
+
+	</select>
+
+
+
+	<!-- 为了根据订单code查询订单分仓信息，需要rewardruleOid,所以根据订单查一下这个表 -->
+	<select id="queryFirstApartIncomeByOrderOid" resultMap="BaseResultMap">
+
+		select t1.*
+		from
+		T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME t1
+		where orderOid = #{tradeOrderOid}
+		order by createTime desc
+		limit 0,1
+
+	</select>
+
+
+
+	<select id="queryApartIncomeByUpdateTime" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from
+		T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME
+		where updateTime <![CDATA[ >=]]>
+		#{startDate}
+
+	</select>
+
+
+
+	<select id="queryApartIncomeInHis" resultMap="BaseResultMap">
+
+		select t1.* from
+		T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME_ t1,
+		T_MONEY_INVESTOR_TRADEORDER t2
+		where t1.orderOid = t2.oid and
+		t1.investorOid = #{investorOid} and t2.orderCode = #{tradeOrderOid}
+		and
+		confirmDate = #{incomeDate}
+
+	</select>
+
+
+	<insert id="createAndBackupHoldApartIncome">
+		INSERT INTO T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME_
+		 SELECT * FROM T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME WHERE confirmDate = #{queryDate};
+	</insert>
+	<insert id="createTableHoldApartIncome">
+		CREATE TABLE T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME_ LIKE T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME;
+		
+	</insert>
+	<delete id="deleteHoldApartBackupData">
+		delete from T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME where confirmDate = #{queryDate}
+	</delete>
+	<select id="queryBackupDate" resultType="java.util.Date">
+			SELECT distinct confirmDate
+			FROM T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME
+			WHERE confirmDate <![CDATA[ <=]]> (DATE_SUB(CURDATE(),INTERVAL 5 DAY)) ORDER BY confirmDate
+	</select>
+	
+	<select id="selectHoldApartIncomes" parameterType="com.le.jr.am.order.common.page.PageEntity" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from
+		T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME 
+		<where>
+		   <if test="params.orderOid != null and params.orderOid !=''">
+	           orderOid=#{params.orderOid}
+	       </if>
+	       <if test="params.productOid != null and params.productOid !='' ">
+	           and productOid = #{params.productOid,jdbcType=VARCHAR}
+	       </if>
+	       <if test="params.incomeBaseDate != null">
+	           and confirmDate=DATE_FORMAT(#{params.incomeBaseDate}, '%Y-%m-%d')
+	       </if>
+	    </where>
+			order by createTime desc	
+	      <if test="offset!=null">
+	          limit #{offset},#{size}
+	      </if>
+	</select>
+	<select id="selectHoldApartIncomesCount" parameterType="com.le.jr.am.profit.domain.input.ProductOrderIncomeReqVo" resultType="int">
+		select count(1) from
+		T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME
+		where 1=1
+		<if test="orderOid != null and orderOid !=''">
+			and orderOid=#{orderOid}
+		</if>
+		<if test="productOid != null and productOid !='' ">
+			and productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+		<if test="incomeBaseDate != null">
+			and confirmDate=DATE_FORMAT(#{incomeBaseDate}, '%Y-%m-%d')
+		</if>
+	</select>
+	
+</mapper>

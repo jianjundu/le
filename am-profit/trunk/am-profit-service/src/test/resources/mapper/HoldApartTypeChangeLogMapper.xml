@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.le.jr.am.profit.dao.HoldApartTypeChangeLogMapper">
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.HoldApartTypeChangeLog">
+    <result column="oid" jdbcType="VARCHAR" property="oid" />
+    <result column="originalHoldType" jdbcType="INTEGER" property="originalHoldType" />
+    <result column="newHoldType" jdbcType="INTEGER" property="newHoldType" />
+    <result column="holdApartOid" jdbcType="VARCHAR" property="holdApartOid" />
+    <result column="createTime" jdbcType="DATE" property="createTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.le.jr.am.profit.domain.HoldApartTypeChangeLog">
+    insert into T_MONEY_PUBLISHER_HOLDAPART_TYPE_CHANGE_LOG (oid, originalHoldType, newHoldType, 
+      holdApartOid, createTime)
+    values (#{oid,jdbcType=VARCHAR}, #{originalHoldType,jdbcType=INTEGER}, #{newHoldType,jdbcType=INTEGER}, 
+      #{holdApartOid,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.le.jr.am.profit.domain.HoldApartTypeChangeLog">
+    insert into T_MONEY_PUBLISHER_HOLDAPART_TYPE_CHANGE_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oid != null">
+        oid,
+      </if>
+      <if test="originalHoldType != null">
+        originalHoldType,
+      </if>
+      <if test="newHoldType != null">
+        newHoldType,
+      </if>
+      <if test="holdApartOid != null">
+        holdApartOid,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oid != null">
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="originalHoldType != null">
+        #{originalHoldType,jdbcType=INTEGER},
+      </if>
+      <if test="newHoldType != null">
+        #{newHoldType,jdbcType=INTEGER},
+      </if>
+      <if test="holdApartOid != null">
+        #{holdApartOid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

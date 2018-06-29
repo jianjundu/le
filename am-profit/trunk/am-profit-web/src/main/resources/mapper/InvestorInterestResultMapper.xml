@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.InvestorInterestResultMapper" >
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.InvestorInterestResult" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="allocateOid" property="allocateOid" jdbcType="VARCHAR" />
+    <result column="productOid" property="productOid" jdbcType="VARCHAR" />
+    <result column="allocateDate" property="allocateDate" jdbcType="DATE" />
+    <result column="successAllocateIncome" property="successAllocateIncome" jdbcType="DECIMAL" />
+    <result column="leftAllocateIncome" property="leftAllocateIncome" jdbcType="DECIMAL" />
+    <result column="successAllocateInvestors" property="successAllocateInvestors" jdbcType="INTEGER" />
+    <result column="successAllocateRewardIncome" property="successAllocateRewardIncome" jdbcType="DECIMAL" />
+    <result column="failAllocateInvestors" property="failAllocateInvestors" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="anno" property="anno" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="snapshotVolume" property="snapshotVolume" jdbcType="DECIMAL" />
+    <result column="provisionInterestVolume" property="provisionInterestVolume" jdbcType="INTEGER" />
+    <result column="closeInterestVolume" property="closeInterestVolume" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, allocateOid, productOid, allocateDate, successAllocateIncome, leftAllocateIncome, 
+    successAllocateInvestors, successAllocateRewardIncome, failAllocateInvestors, status, 
+    anno, updateTime, createTime,snapshotVolume,provisionInterestVolume,closeInterestVolume
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_INVESTOR_INTEREST_RESULT
+    where oid = #{oid,jdbcType=VARCHAR}
+  </select>
+ 
+  <insert id="insert" parameterType="com.le.jr.am.profit.domain.InvestorInterestResult" >
+    insert into T_MONEY_PUBLISHER_INVESTOR_INTEREST_RESULT (oid, allocateOid, productOid, 
+      allocateDate, successAllocateIncome, leftAllocateIncome, 
+      successAllocateInvestors, successAllocateRewardIncome, 
+      failAllocateInvestors, status, anno, 
+      updateTime, createTime,snapshotVolume)
+    values (#{oid,jdbcType=VARCHAR}, #{allocateOid,jdbcType=VARCHAR}, #{productOid,jdbcType=VARCHAR}, 
+      #{allocateDate,jdbcType=DATE}, #{successAllocateIncome,jdbcType=DECIMAL}, #{leftAllocateIncome,jdbcType=DECIMAL}, 
+      #{successAllocateInvestors,jdbcType=INTEGER}, #{successAllocateRewardIncome,jdbcType=DECIMAL}, 
+      #{failAllocateInvestors,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{anno,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{snapshotVolume,jdbcType=DECIMAL})
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.InvestorInterestResult" >
+    update T_MONEY_PUBLISHER_INVESTOR_INTEREST_RESULT
+    <set >
+      <if test="allocateOid != null" >
+        allocateOid = #{allocateOid,jdbcType=VARCHAR},
+      </if>
+      <if test="productOid != null" >
+        productOid = #{productOid,jdbcType=VARCHAR},
+      </if>
+      <if test="allocateDate != null" >
+        allocateDate = #{allocateDate,jdbcType=DATE},
+      </if>
+      <if test="successAllocateIncome != null" >
+        successAllocateIncome = #{successAllocateIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="leftAllocateIncome != null" >
+        leftAllocateIncome = #{leftAllocateIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="successAllocateInvestors != null" >
+        successAllocateInvestors = #{successAllocateInvestors,jdbcType=INTEGER},
+      </if>
+      <if test="successAllocateRewardIncome != null" >
+        successAllocateRewardIncome = #{successAllocateRewardIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="failAllocateInvestors != null" >
+        failAllocateInvestors = #{failAllocateInvestors,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="anno != null" >
+        anno = #{anno,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="snapshotVolume != null" >
+        snapshotVolume = #{snapshotVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="provisionInterestVolume != null" >
+        provisionInterestVolume = #{provisionInterestVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="closeInterestVolume != null" >
+        closeInterestVolume = #{closeInterestVolume,jdbcType=DECIMAL}
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectInterests" resultMap="BaseResultMap" parameterType="com.le.jr.am.order.common.page.PageEntity" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_INVESTOR_INTEREST_RESULT
+    <where>
+       <if test="params.productOid != null and params.productOid !='' ">
+           productOid = #{params.productOid,jdbcType=VARCHAR}
+       </if>
+       <if test="params.incomeBaseDate != null">
+           and allocateDate=DATE_FORMAT(#{params.incomeBaseDate}, '%Y-%m-%d')
+       </if>
+       <if test="params.status != null and params.status !=''">
+           and status=#{params.status}
+       </if>
+    </where>
+		order by createTime desc	
+      <if test="offset!=null">
+          limit #{offset},#{size}
+      </if>
+  </select>
+  
+  <select id="selectInterestsCount" resultType="java.lang.Integer" parameterType="com.le.jr.am.profit.domain.input.ProductIncomeReqVo" >
+    select count(1)
+    from T_MONEY_PUBLISHER_INVESTOR_INTEREST_RESULT
+    <where>
+       <if test="productOid != null and productOid !='' ">
+           productOid = #{productOid,jdbcType=VARCHAR}
+       </if>
+       <if test="incomeBaseDate != null">
+           and allocateDate=DATE_FORMAT(#{incomeBaseDate}, '%Y-%m-%d')
+       </if>
+       <if test="status != null and status !=''">
+           and status=#{status}
+       </if>
+    </where>
+  </select>
+</mapper>

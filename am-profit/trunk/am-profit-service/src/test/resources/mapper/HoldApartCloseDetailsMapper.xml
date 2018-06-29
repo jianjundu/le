@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.HoldApartCloseDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.HoldApartCloseDetails" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="holdApartOid" property="holdApartOid" jdbcType="VARCHAR" />
+    <result column="orderOid" property="orderOid" jdbcType="VARCHAR" />
+    <result column="investOrderCode" property="investOrderCode" jdbcType="VARCHAR" />
+    <result column="changeVolume" property="changeVolume" jdbcType="DECIMAL" />
+    <result column="changeDirection" property="changeDirection" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, holdApartOid, orderOid, investOrderCode, changeVolume, changeDirection, updateTime, 
+    createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_INVESTOR_HOLDAPART_CLOSEDETAILS
+    where oid = #{oid,jdbcType=VARCHAR}
+  </select>
+ 
+  <insert id="insert" parameterType="com.le.jr.am.profit.domain.HoldApartCloseDetails" >
+    insert into T_MONEY_PUBLISHER_INVESTOR_HOLDAPART_CLOSEDETAILS (oid, holdApartOid, orderOid, 
+      investOrderCode, changeVolume, changeDirection, 
+      updateTime, createTime)
+    values (#{oid,jdbcType=VARCHAR}, #{holdApartOid,jdbcType=VARCHAR}, #{orderOid,jdbcType=VARCHAR}, 
+      #{investOrderCode,jdbcType=VARCHAR}, #{changeVolume,jdbcType=DECIMAL}, #{changeDirection,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+ 
+  
+ 
+   <update id="updateByPrimaryKeySelective"  parameterType="com.le.jr.am.profit.domain.HoldApartCloseDetails" >
+    update T_MONEY_PUBLISHER_INVESTOR_HOLDAPART_CLOSEDETAILS
+    <set >
+      <if test="holdApartOid != null" >
+        holdApartOid = #{holdApartOid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderOid != null" >
+        orderOid = #{orderOid,jdbcType=VARCHAR},
+      </if>
+      <if test="investOrderCode != null" >
+        investOrderCode = #{investOrderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="changeVolume != null" >
+        changeVolume = #{changeVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="changeDirection != null" >
+        changeDirection = #{changeDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update> 
+ 
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.IncomeAllocateFailMapper" >
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.IncomeAllocateFail" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="allocateOid" property="allocateOid" jdbcType="VARCHAR" />
+    <result column="holdOid" property="holdOid" jdbcType="VARCHAR" />
+    <result column="failTime" property="failTime" jdbcType="TIMESTAMP" />
+    <result column="successTime" property="successTime" jdbcType="TIMESTAMP" />
+    <result column="allocateDate" property="allocateDate" jdbcType="DATE" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.le.jr.am.profit.domain.IncomeAllocateFail" extends="BaseResultMap" >
+    <result column="failComment" property="failComment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, allocateOid, holdOid, failTime, successTime, allocateDate, updateTime, createTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    failComment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_GAM_ASSETPOOL_INCOME_ALLOCATE_FAIL
+    where oid = #{oid,jdbcType=VARCHAR}
+  </select>
+ 
+  <insert id="insert" parameterType="com.le.jr.am.profit.domain.IncomeAllocateFail" >
+    insert into T_GAM_ASSETPOOL_INCOME_ALLOCATE_FAIL (oid, allocateOid, holdOid, 
+      failTime, successTime, allocateDate, 
+      updateTime, createTime, failComment
+      )
+    values (#{oid,jdbcType=VARCHAR}, #{allocateOid,jdbcType=VARCHAR}, #{holdOid,jdbcType=VARCHAR}, 
+      #{failTime,jdbcType=TIMESTAMP}, #{successTime,jdbcType=TIMESTAMP}, #{allocateDate,jdbcType=DATE}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{failComment,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.IncomeAllocateFail" >
+    update T_GAM_ASSETPOOL_INCOME_ALLOCATE_FAIL
+    <set >
+      <if test="allocateOid != null" >
+        allocateOid = #{allocateOid,jdbcType=VARCHAR},
+      </if>
+      <if test="holdOid != null" >
+        holdOid = #{holdOid,jdbcType=VARCHAR},
+      </if>
+      <if test="failTime != null" >
+        failTime = #{failTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successTime != null" >
+        successTime = #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allocateDate != null" >
+        allocateDate = #{allocateDate,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failComment != null" >
+        failComment = #{failComment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.le.jr.am.profit.domain.IncomeAllocateFail" >
+    update T_GAM_ASSETPOOL_INCOME_ALLOCATE_FAIL
+    set allocateOid = #{allocateOid,jdbcType=VARCHAR},
+      holdOid = #{holdOid,jdbcType=VARCHAR},
+      failTime = #{failTime,jdbcType=TIMESTAMP},
+      successTime = #{successTime,jdbcType=TIMESTAMP},
+      allocateDate = #{allocateDate,jdbcType=DATE},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      failComment = #{failComment,jdbcType=LONGVARCHAR}
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+    		http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+
+	<!-- 分库分表组件初始化数据使用 -->
+	<bean
+		class="com.lejr.platform.mybatis.spring.sharding.core.InitializingListener" />
+
+	<!-- 支持分库分表、读写分离的数据源。 -->
+	<!-- 注意这里是个代理，避免在开启事务时获取实际数据源，注意必须设置defaultAutoCommit和 defaultTransactionIsolation -->
+	<bean id="shardingDataSource"
+		class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+		<property name="targetDataSource" ref="targetShardingDataSource" />
+		<!-- 默认自动提交事务标示 -->
+		<property name="defaultAutoCommit" value="false" />
+		<!-- 默认事务隔离级别,Mysql默认为REPEATABLE_READ -->
+		<property name="defaultTransactionIsolation" value="4" />
+	</bean>
+
+	<!-- 实际的分库分表、读写分离的数据源。 -->
+	<bean id="targetShardingDataSource"
+		class="com.lejr.platform.mybatis.spring.sharding.datasource.ShardingDataSource">
+		<!-- 数据源查找器 -->
+		<property name="dataSourceLookup">
+			<bean
+				class="com.lejr.platform.mybatis.spring.sharding.datasource.ShardingDataSourceLookup">
+				<!-- 虚拟数据源组 -->
+				<property name="virtualDataSourceMap">
+					<map>
+						<entry key="vds-0" value-ref="vds-0" />
+					</map>
+				</property>
+				<!-- 默认的非分库分表数据源组 -->
+				<property name="defaultNoShardingDataSourceGroup">
+					<bean
+						class="com.lejr.platform.mybatis.spring.sharding.datasource.DataSourceGroup">
+						<property name="masterDataSource">
+							<!-- master数据源配置 -->
+							<ref bean="dataSourceMaster0" />
+						</property>
+						<property name="slaveDataSources">
+							<!-- slave数据源配置 -->
+							<list>
+								<ref bean="dataSourceMaster0" />
+							</list>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 虚拟数据源配置 -->
+	<bean id="vds-0"
+		class="com.lejr.platform.mybatis.spring.sharding.datasource.VirtualDataSource">
+		<!-- 虚拟数据源名称 -->
+		<property name="name" value="vds-0" />
+		<!-- 分表元信息 -->
+		<property name="shardingTableInfos">
+			<list>
+				<bean
+					class="com.lejr.platform.mybatis.spring.sharding.datasource.ShardingTableInfo">
+					<!-- 分表前缀 -->
+					<property name="tablePrefix" value="T_MONEY_PUBLISHER_INVESTOR_HOLDAPARTINCOME_" />
+					<!-- 分表总数 -->
+					<property name="shardingTableCount" value="4" /> <!-- 这里虽然是4，但是实际上一个库只有一个表 -->
+					<!-- 真实的表数 -->
+					<property name="realTableCount" value="2" />
+					<!-- 分表策略 -->
+					<property name="shardingStrategy">
+						<bean
+							class="com.le.jr.am.profit.dao.shard.MonthShardingStrategy" />
+					</property>
+				</bean>
+				
+				<bean
+					class="com.lejr.platform.mybatis.spring.sharding.datasource.ShardingTableInfo">
+					<!-- 分表前缀 -->
+					<property name="tablePrefix" value="T_MONEY_PUBLISHER_INVESTOR_HOLDINCOME_" />
+					<!-- 分表总数 -->
+					<property name="shardingTableCount" value="4" /> <!-- 这里虽然是4，但是实际上一个库只有一个表 -->
+					<!-- 真实的表数 -->
+					<property name="realTableCount" value="2" />
+					<!-- 分表策略 -->
+					<property name="shardingStrategy">
+						<bean
+							class="com.le.jr.am.profit.dao.shard.MonthShardingStrategy" />
+					</property>
+				</bean>
+				
+				<bean
+					class="com.lejr.platform.mybatis.spring.sharding.datasource.ShardingTableInfo">
+					<!-- 分表前缀 -->
+					<property name="tablePrefix" value="T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME_" />
+					<!-- 分表总数 -->
+					<property name="shardingTableCount" value="4" /> <!-- 这里虽然是4，但是实际上一个库只有一个表 -->
+					<!-- 真实的表数 -->
+					<property name="realTableCount" value="2" />
+					<!-- 分表策略 -->
+					<property name="shardingStrategy">
+						<bean
+							class="com.le.jr.am.profit.dao.shard.MonthShardingStrategy" />
+					</property>
+				</bean>
+			</list>
+		</property>
+
+		<!-- 数据源组信息 -->
+		<property name="dataSourceGroupMap">
+			<map>
+				<!-- 数据源组配置 -->
+
+				<!-- 分库分表的数据源组配置 -->
+				<entry key="dsg-0">
+					<bean
+						class="com.lejr.platform.mybatis.spring.sharding.datasource.DataSourceGroup">
+						<property name="name" value="dsg-0" />
+						<property name="masterDataSource">
+							<!-- master数据源配置 -->
+							<ref bean="dataSourceMaster0" />
+						</property>
+						<property name="slaveDataSources">
+							<!-- slave数据源配置 -->
+							<list>
+								<ref bean="dataSourceMaster0" />
+							</list>
+						</property>
+					</bean>
+				</entry>
+
+
+
+			</map>
+		</property>
+	</bean>
+
+</beans>

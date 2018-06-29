@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.RewardIncomePracticeMapper" >
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.RewardIncomePractice" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="productOid" property="productOid" jdbcType="VARCHAR" />
+    <result column="assetPoolOid" property="assetPoolOid" jdbcType="VARCHAR" />
+    <result column="rewardRuleOid" property="rewardRuleOid" jdbcType="VARCHAR" />
+    <result column="isAllocateInterest" property="isAllocateInterest" jdbcType="VARCHAR" />
+    <result column="totalHoldVolume" property="totalHoldVolume" jdbcType="DECIMAL" />
+    <result column="totalRewardIncome" property="totalRewardIncome" jdbcType="DECIMAL" />
+    <result column="toConfirmVolume" property="toConfirmVolume" jdbcType="DECIMAL" />
+    <result column="toInterestVolume" property="toInterestVolume" jdbcType="DECIMAL" />
+    <result column="interestedVolume" property="interestedVolume" jdbcType="DECIMAL" />
+    <result column="tDate" property="tDate" jdbcType="DATE" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, productOid,assetPoolOid, rewardRuleOid,isAllocateInterest, totalHoldVolume, totalRewardIncome,toConfirmVolume,toInterestVolume, interestedVolume,tDate, updateTime, 
+    createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE
+    where oid = #{oid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE
+    where oid = #{oid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.le.jr.am.profit.domain.RewardIncomePractice" >
+    insert into T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE (oid, productOid,assetPoolOid, rewardRuleOid,
+      totalHoldVolume, totalRewardIncome, tDate,
+      updateTime, createTime,toConfirmVolume,toInterestVolume,interestedVolume,isAllocateInterest)
+    values (#{oid,jdbcType=VARCHAR}, #{productOid,jdbcType=VARCHAR}, #{assetPoolOid,jdbcType=VARCHAR}, #{rewardRuleOid,jdbcType=VARCHAR},
+      #{totalHoldVolume,jdbcType=DECIMAL}, #{totalRewardIncome,jdbcType=DECIMAL}, #{tDate,jdbcType=DATE}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
+      #{toConfirmVolume,jdbcType=DECIMAL},#{toInterestVolume,jdbcType=DECIMAL},#{interestedVolume,jdbcType=DECIMAL},
+      #{isAllocateInterest,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.RewardIncomePractice" >
+    update T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE
+    <set >
+      <if test="productOid != null" >
+        productOid = #{productOid,jdbcType=VARCHAR},
+      </if>
+      <if test="assetPoolOid != null" >
+        assetPoolOid = #{assetPoolOid,jdbcType=VARCHAR},
+      </if>
+      
+       <if test="toConfirmVolume != null" >
+        toConfirmVolume = #{toConfirmVolume,jdbcType=DECIMAL},
+      </if>
+       <if test="toInterestVolume != null" >
+        toInterestVolume = #{toInterestVolume,jdbcType=DECIMAL},
+      </if>
+       <if test="interestedVolume != null" >
+        interestedVolume = #{interestedVolume,jdbcType=DECIMAL},
+      </if>
+       <if test="isAllocateInterest != null" >
+        isAllocateInterest = #{isAllocateInterest,jdbcType=VARCHAR},
+      </if>
+      
+      
+      <if test="rewardRuleOid != null" >
+        rewardRuleOid = #{rewardRuleOid,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHoldVolume != null" >
+        totalHoldVolume = #{totalHoldVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRewardIncome != null" >
+        totalRewardIncome = #{totalRewardIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="tDate != null" >
+        tDate = #{tDate,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+ 
+  
+   <select id="countByProductAndTDate" resultType="java.lang.Integer" >
+   select count(1) from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE where productOid = #{productOid,jdbcType=VARCHAR} and tDate = #{sqlDate}
+  </select>
+   <select id="findByProductAndTDate" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+     from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE 
+      where productOid =  #{productOid,jdbcType=VARCHAR} 
+      and tDate =  #{tDate,jdbcType=TIMESTAMP}
+       and rewardRuleOid is not null 
+        order by rewardRuleOid asc
+  </select>
+   <select id="findRewardIsNull" resultMap="BaseResultMap"  >
+    select     <include refid="Base_Column_List" />
+     from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE 
+      where productOid =  #{productOid,jdbcType=VARCHAR} and tDate =  #{tDate,jdbcType=TIMESTAMP} and rewardRuleOid is  null
+  </select>
+  
+  <select id="findRewardIsNulls" resultMap="BaseResultMap"  >
+    select     <include refid="Base_Column_List" />
+     from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE 
+      where assetPoolOid =  #{assetPoolOid,jdbcType=VARCHAR} and tDate =  #{tDate,jdbcType=TIMESTAMP} and rewardRuleOid is  null
+  </select>
+  
+   <select id="findMaxTDateByProduct"  resultType="java.util.Date">
+   select max(tDate) from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE  where productOid =  #{productOid,jdbcType=VARCHAR}
+  </select>
+   <select id="findMaxTDate"  resultType="java.util.Date">
+   select max(tDate) from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE  where assetPoolOid =  #{assetPoolOid,jdbcType=VARCHAR}
+  </select>
+   <select id="findByRewardAndTDate"  resultMap="BaseResultMap" >
+   select <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE
+      where rewardRuleOid =  #{rewardOid,jdbcType=VARCHAR} and 
+      tDate = #{tDate,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateIsAllocateInterestByRewardAndTDate"> 
+	  update T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE
+	    set  isAllocateInterest = 'yes'
+	    where rewardRuleOid =  #{rewardOid,jdbcType=VARCHAR} and 
+	      tDate = #{tDate,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findOldDateByProductOid"  resultType="java.util.Date" >
+   select min(tDate)
+    from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE
+    where
+    productOid = #{productOid,jdbcType=VARCHAR}
+    and isAllocateInterest = 'no' and interestedVolume>0
+  </select>
+  
+  <select id="getNotAlloInterestProducts"  resultType="java.lang.String" >
+   select productOid
+    from T_MONEY_PUBLISHER_PRODUCT_REWARDINCOMEPRACTICE
+    where
+    tDate = #{tDate,jdbcType=VARCHAR}
+    and isAllocateInterest = 'no' and interestedVolume>0
+    group by productOid
+  </select>
+  
+  
+  
+</mapper>

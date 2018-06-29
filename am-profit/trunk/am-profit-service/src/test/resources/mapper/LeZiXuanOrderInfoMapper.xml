@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.LeZiXuanOrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.LeZiXuanOrderInfo" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="productOid" property="productOid" jdbcType="VARCHAR" />
+    <result column="rewardOid" property="rewardOid" jdbcType="VARCHAR" />
+    <result column="investDate" property="investDate" jdbcType="DATE" />
+    <result column="investVolume" property="investVolume" jdbcType="DECIMAL" />
+    <result column="expireDate" property="expireDate" jdbcType="DATE" />
+    <result column="period" property="period" jdbcType="INTEGER" />
+    <result column="expireInvestVolume" property="expireInvestVolume" jdbcType="DECIMAL" />
+    <result column="expireIncomeVolume" property="expireIncomeVolume" jdbcType="DECIMAL" />
+    <result column="expireTotalVolume" property="expireTotalVolume" jdbcType="DECIMAL" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, productOid, rewardOid, investDate, investVolume, expireDate, period, expireInvestVolume, 
+    expireIncomeVolume, expireTotalVolume, updateTime, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_LEZIXUAN_ORDER_INFO
+    where oid = #{oid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_MONEY_LEZIXUAN_ORDER_INFO
+    where oid = #{oid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.le.jr.am.profit.domain.LeZiXuanOrderInfo" >
+    insert into T_MONEY_LEZIXUAN_ORDER_INFO (oid, productOid, rewardOid, 
+      investDate, investVolume, expireDate, 
+      period, expireInvestVolume, expireIncomeVolume, 
+      expireTotalVolume, updateTime, createTime
+      )
+    values (#{oid,jdbcType=VARCHAR}, #{productOid,jdbcType=VARCHAR}, #{rewardOid,jdbcType=VARCHAR}, 
+      #{investDate,jdbcType=DATE}, #{investVolume,jdbcType=DECIMAL}, #{expireDate,jdbcType=DATE}, 
+      #{period,jdbcType=INTEGER}, #{expireInvestVolume,jdbcType=DECIMAL}, #{expireIncomeVolume,jdbcType=DECIMAL}, 
+      #{expireTotalVolume,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.le.jr.am.profit.domain.LeZiXuanOrderInfo" >
+    insert into T_MONEY_LEZIXUAN_ORDER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="productOid != null" >
+        productOid,
+      </if>
+      <if test="rewardOid != null" >
+        rewardOid,
+      </if>
+      <if test="investDate != null" >
+        investDate,
+      </if>
+      <if test="investVolume != null" >
+        investVolume,
+      </if>
+      <if test="expireDate != null" >
+        expireDate,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="expireInvestVolume != null" >
+        expireInvestVolume,
+      </if>
+      <if test="expireIncomeVolume != null" >
+        expireIncomeVolume,
+      </if>
+      <if test="expireTotalVolume != null" >
+        expireTotalVolume,
+      </if>
+      <if test="updateTime != null" >
+        updateTime,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="productOid != null" >
+        #{productOid,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardOid != null" >
+        #{rewardOid,jdbcType=VARCHAR},
+      </if>
+      <if test="investDate != null" >
+        #{investDate,jdbcType=DATE},
+      </if>
+      <if test="investVolume != null" >
+        #{investVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="expireDate != null" >
+        #{expireDate,jdbcType=DATE},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=INTEGER},
+      </if>
+      <if test="expireInvestVolume != null" >
+        #{expireInvestVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="expireIncomeVolume != null" >
+        #{expireIncomeVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="expireTotalVolume != null" >
+        #{expireTotalVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.LeZiXuanOrderInfo" >
+    update T_MONEY_LEZIXUAN_ORDER_INFO
+    <set >
+      <if test="productOid != null" >
+        productOid = #{productOid,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardOid != null" >
+        rewardOid = #{rewardOid,jdbcType=VARCHAR},
+      </if>
+      <if test="investDate != null" >
+        investDate = #{investDate,jdbcType=DATE},
+      </if>
+      <if test="investVolume != null" >
+        investVolume = #{investVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="expireDate != null" >
+        expireDate = #{expireDate,jdbcType=DATE},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=INTEGER},
+      </if>
+      <if test="expireInvestVolume != null" >
+        expireInvestVolume = #{expireInvestVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="expireIncomeVolume != null" >
+        expireIncomeVolume = #{expireIncomeVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="expireTotalVolume != null" >
+        expireTotalVolume = #{expireTotalVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.le.jr.am.profit.domain.LeZiXuanOrderInfo" >
+    update T_MONEY_LEZIXUAN_ORDER_INFO
+    set productOid = #{productOid,jdbcType=VARCHAR},
+      rewardOid = #{rewardOid,jdbcType=VARCHAR},
+      investDate = #{investDate,jdbcType=DATE},
+      investVolume = #{investVolume,jdbcType=DECIMAL},
+      expireDate = #{expireDate,jdbcType=DATE},
+      period = #{period,jdbcType=INTEGER},
+      expireInvestVolume = #{expireInvestVolume,jdbcType=DECIMAL},
+      expireIncomeVolume = #{expireIncomeVolume,jdbcType=DECIMAL},
+      expireTotalVolume = #{expireTotalVolume,jdbcType=DECIMAL},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByProductOidAndRewardOidAndInvestDate" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_LEZIXUAN_ORDER_INFO
+    where productOid = #{productOid,jdbcType=VARCHAR}
+    and rewardOid=#{rewardOid,jdbcType=VARCHAR}
+    and DATE_FORMAT(investDate, '%Y-%m-%d')= DATE_FORMAT(#{orderTime}, '%Y-%m-%d')
+  </select>
+  
+  <select id="selectLeZiXuansCountAndSum" parameterType="com.le.jr.am.profit.domain.input.LeZiXuanReqVo" resultType="com.le.jr.am.profit.domain.vo.LeZiXuanPage">
+    select 
+    	count(*) totalCount,
+    	sum(investVolume) investTotalVolume,
+    	sum(expireInvestVolume) expireInvestTotalVolume,
+    	sum(expireIncomeVolume) expireIncomeTotalVolume,
+    	sum(expireTotalVolume) expireTotalVolume
+    from T_MONEY_LEZIXUAN_ORDER_INFO
+     <where>
+       <if test="productOid != null and productOid !='' ">
+           and productOid=#{productOid}
+       </if>
+       <if test="rewardOid != null and rewardOid !=''">
+           and rewardOid=#{rewardOid}
+       </if>
+       <if test="investDateBegin != null">
+           <![CDATA[   and DATE_FORMAT(investDate, '%Y-%m-%d') >= DATE_FORMAT(#{investDateBegin}, '%Y-%m-%d')]]>
+       </if>
+       <if test="investDateEnd != null">
+           <![CDATA[   and DATE_FORMAT(investDate, '%Y-%m-%d') <= DATE_FORMAT(#{investDateEnd}, '%Y-%m-%d')]]>
+       </if>
+       <if test="expireDateBegin != null">
+           <![CDATA[   and DATE_FORMAT(expireDate, '%Y-%m-%d') >= DATE_FORMAT(#{expireDateBegin}, '%Y-%m-%d')]]>
+       </if>
+       <if test="expireDateEnd != null">
+           <![CDATA[   and DATE_FORMAT(expireDate, '%Y-%m-%d') <= DATE_FORMAT(#{expireDateEnd}, '%Y-%m-%d')]]>
+       </if>
+       <if test="periodBegin != null">
+           and period >= #{periodBegin}
+       </if>
+       <if test="periodEnd != null">
+           and #{periodEnd} >= period  
+       </if>
+   </where>
+  </select>
+  
+  <select id="selectLeZiXuans" resultMap="BaseResultMap" parameterType="com.le.jr.am.order.common.page.PageEntity">
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_LEZIXUAN_ORDER_INFO
+    <where>
+       <if test="params.productOid != null and params.productOid !='' ">
+           and productOid=#{params.productOid}
+       </if>
+       <if test="params.rewardOid != null and params.rewardOid !=''">
+           and rewardOid=#{params.rewardOid}
+       </if>
+       <if test="params.investDateBegin != null">
+           <![CDATA[   and DATE_FORMAT(investDate, '%Y-%m-%d') >= DATE_FORMAT(#{params.investDateBegin}, '%Y-%m-%d')]]>
+       </if>
+       <if test="params.investDateEnd != null">
+           <![CDATA[   and DATE_FORMAT(investDate, '%Y-%m-%d') <= DATE_FORMAT(#{params.investDateEnd}, '%Y-%m-%d')]]>
+       </if>
+       <if test="params.expireDateBegin != null">
+           <![CDATA[   and DATE_FORMAT(expireDate, '%Y-%m-%d') >= DATE_FORMAT(#{params.expireDateBegin}, '%Y-%m-%d')]]>
+       </if>
+       <if test="params.expireDateEnd != null">
+           <![CDATA[   and DATE_FORMAT(expireDate, '%Y-%m-%d') <= DATE_FORMAT(#{params.expireDateEnd}, '%Y-%m-%d')]]>
+       </if>
+       <if test="params.periodBegin != null">
+           and period >= #{params.periodBegin}
+       </if>
+       <if test="params.periodEnd != null">
+           and #{params.periodEnd} >= period  
+       </if>
+   </where>
+		order by createTime desc
+    <if test="offset!=null">
+        limit #{offset},#{size}
+    </if>
+  </select>
+  
+</mapper>

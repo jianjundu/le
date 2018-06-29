@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- DTS客户端 -->
+    <bean id="dtsClient" class="com.le.dts.client.DtsClient" init-method="init">    
+        <property name="groupId" value="${dts_groupId}" />        
+        <property name="consumerThreadsMap">
+            <map>
+                <!--自动派息通知 -->
+                <entry key="com.le.jr.am.profit.service.work.dts.AutoAllotInterestNoticeWorkDTS" value="5"/>
+                <!--自动派息-->
+                <entry key="com.le.jr.am.profit.service.work.dts.AutoDistributeProfitDTS" value="5"/>
+                <!--产品计息规模试算 -->
+                <entry key="com.le.jr.am.profit.service.work.dts.ProfitTryPracticeDTS" value="5"/>
+                <!--上传投资人pdf协议-->
+                <entry key="com.le.jr.am.profit.service.work.dts.PubliserProductAgreementPDFDTS" value="5"/>
+                <!--重置每日赎回份额-->
+                <entry key="com.le.jr.am.profit.service.work.dts.ResetDayRedeemVolumeDTS" value="5"/>
+                <!--解锁计息份额-->
+                <entry key="com.le.jr.am.profit.service.work.dts.UnlockAccrualDTS" value="5"/>
+                <!--解锁赎回份额-->
+                <entry  key="com.le.jr.am.profit.service.work.dts.UnlockRedeemDTS" value="5"/>
+                <!-- 备份表数据 -->
+                <entry  key="com.le.jr.am.profit.service.work.dts.BackupTableHoldInfoDTS" value="5"/>
+                
+                 <!-- 加载持仓合仓和分仓份额到缓存 -->
+                <entry  key="com.le.jr.am.profit.service.work.dts.LoadHoldData2CacheDTS" value="5"/>
+                <!-- 多线程加载持仓合仓和分仓份额到缓存 -->
+                <entry  key="com.le.jr.am.profit.service.work.dts.LoadHoldData2CacheMultiDTS" value="5"/>
+                 <!-- 加载持仓合仓和分仓收益记录到缓存 -->
+                <entry  key="com.le.jr.am.profit.service.work.dts.LoadIncomeData2CacheDTS" value="5"/>
+                <!-- 定时补偿分仓总仓到DTS -->
+                <entry  key="com.le.jr.am.profit.service.work.dts.CompareHoldDataWithCacheDTS" value="5"/>
+                
+                <!-- 乐自选投资统计 -->
+                <entry  key="com.le.jr.am.profit.service.work.dts.LeZiXuanInfoDTS" value="5"/>
+                <!-- 乐自选投资全量统计 -->
+                <entry  key="com.le.jr.am.profit.service.work.dts.CompareLeZiXuanInfoDTS" value="5"/>
+                 <!-- 提醒产品需要手动派息任务 -->
+                <entry  key="com.le.jr.am.profit.service.work.dts.WarnAlloInterestDTS" value="5"/>
+            </map>
+        </property>
+    </bean>
+
+
+    <bean id="compareHoldDataWithCacheDTS" class="com.le.jr.am.profit.service.work.dts.CompareHoldDataWithCacheDTS"/>
+
+    <bean id="autoAllotInterestNoticeWorkDTS" class="com.le.jr.am.profit.service.work.dts.AutoAllotInterestNoticeWorkDTS"/>
+    <!--自动派息-->
+    <bean id="autoDistributeProfitDTS" class="com.le.jr.am.profit.service.work.dts.AutoDistributeProfitDTS"/>
+    <!--产品计息规模试算 -->
+    <bean id="profitTryPracticeDTS" class="com.le.jr.am.profit.service.work.dts.ProfitTryPracticeDTS"/>
+    <!--上传投资人pdf协议-->
+    <bean id="publiserProductAgreementPDFDTS" class="com.le.jr.am.profit.service.work.dts.PubliserProductAgreementPDFDTS" />
+    <!--重置每日赎回份额-->
+    <bean id="resetDayRedeemVolumeDTS" class="com.le.jr.am.profit.service.work.dts.ResetDayRedeemVolumeDTS"/>
+    <!--解锁计息份额-->
+    <bean id="unlockAccrualDTS" class="com.le.jr.am.profit.service.work.dts.UnlockAccrualDTS"/>
+    <!--解锁赎回份额-->
+    <bean id="unlockRedeemDTS" class="com.le.jr.am.profit.service.work.dts.UnlockRedeemDTS"/>
+    <!-- 备份表数据 -->
+    <bean id="backupTableHoldInfoDTS" class="com.le.jr.am.profit.service.work.dts.BackupTableHoldInfoDTS"/>
+    <!-- 加载持仓合仓和分仓份额到缓存 -->
+    <bean id="loadHoldData2CacheDTS" class="com.le.jr.am.profit.service.work.dts.LoadHoldData2CacheDTS"/>
+     <!-- 加载持仓合仓和分仓收益记录到缓存 -->
+    <bean id="loadIncomeData2CacheDTS" class="com.le.jr.am.profit.service.work.dts.LoadIncomeData2CacheDTS"/>
+    
+    <bean id="loadHoldData2CacheMultiDTS" class="com.le.jr.am.profit.service.work.dts.LoadHoldData2CacheMultiDTS"/>
+   
+    <!-- 乐自选投资统计 -->
+    <bean id="leZiXuanInfoDTS" class="com.le.jr.am.profit.service.work.dts.LeZiXuanInfoDTS"/>
+    <!-- 乐自选投资全量统计 -->
+    <bean id="compareLeZiXuanInfoDTS" class="com.le.jr.am.profit.service.work.dts.CompareLeZiXuanInfoDTS"/>
+    <!-- 提醒产品需要手动派息任务 -->
+    <bean id="warnAlloInterestDTS" class="com.le.jr.am.profit.service.work.dts.WarnAlloInterestDTS"/>
+</beans>

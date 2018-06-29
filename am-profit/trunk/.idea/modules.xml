@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/am-profit.iml" filepath="$PROJECT_DIR$/am-profit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/am-profit-common/am-profit-common.iml" filepath="$PROJECT_DIR$/am-profit-common/am-profit-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/am-profit-dao/am-profit-dao.iml" filepath="$PROJECT_DIR$/am-profit-dao/am-profit-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/am-profit-domain/am-profit-domain.iml" filepath="$PROJECT_DIR$/am-profit-domain/am-profit-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/am-profit-interfaces/am-profit-interfaces.iml" filepath="$PROJECT_DIR$/am-profit-interfaces/am-profit-interfaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/am-profit-interfacesimpl/am-profit-interfacesimpl.iml" filepath="$PROJECT_DIR$/am-profit-interfacesimpl/am-profit-interfacesimpl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/am-profit-service/am-profit-service.iml" filepath="$PROJECT_DIR$/am-profit-service/am-profit-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/am-profit-web/am-profit-web.iml" filepath="$PROJECT_DIR$/am-profit-web/am-profit-web.iml" />
+    </modules>
+  </component>
+</project>

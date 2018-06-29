@@ -1,0 +1,107 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="am-profit-web:war exploded">
+    <output-path>$PROJECT_DIR$/am-profit-web/target/am-profit-web-0.0.3-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="am-profit-web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="am-profit-interfacesimpl-0.0.3-SNAPSHOT.jar">
+            <element id="module-output" name="am-profit-interfacesimpl" />
+          </element>
+          <element id="archive" name="am-profit-domain-0.0.3-SNAPSHOT.jar">
+            <element id="module-output" name="am-profit-domain" />
+          </element>
+          <element id="library" level="project" name="Maven: com.le.jr:am-channel-interfaces:0.0.1-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:am-product-interfaces:0.0.4-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:am-assetpool-interfaces:0.0.2-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:am-order-interfaces:0.0.3-SNAPSHOT" />
+          <element id="archive" name="am-profit-common-0.0.3-SNAPSHOT.jar">
+            <element id="module-output" name="am-profit-common" />
+          </element>
+          <element id="library" level="project" name="Maven: com.le.jr:am-order-domain:0.0.3-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:trade-public-common:0.0.1-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.6" />
+          <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.1" />
+          <element id="library" level="project" name="Maven: com.alibaba.rocketmq:rocketmq-client:3.2.6" />
+          <element id="library" level="project" name="Maven: com.alibaba.rocketmq:rocketmq-common:3.2.6" />
+          <element id="library" level="project" name="Maven: com.alibaba.rocketmq:rocketmq-remoting:3.2.6" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.3" />
+          <element id="library" level="project" name="Maven: io.netty:netty-all:4.0.25.Final" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi:3.10-FINAL" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:3.10-FINAL" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-schemas:3.10-FINAL" />
+          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.3.0" />
+          <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.1" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.3" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4.5" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.0.4" />
+          <element id="library" level="project" name="Maven: pd4ml_demo:pd4ml_demo:2.0" />
+          <element id="library" level="project" name="Maven: ss_css2:ss_css2:2.0" />
+          <element id="library" level="project" name="Maven: fonts:fonts:1.0" />
+          <element id="archive" name="am-profit-interfaces-0.0.3-SNAPSHOT.jar">
+            <element id="module-output" name="am-profit-interfaces" />
+          </element>
+          <element id="archive" name="am-profit-service-0.0.3-SNAPSHOT.jar">
+            <element id="module-output" name="am-profit-service" />
+          </element>
+          <element id="archive" name="am-profit-dao-0.0.3-SNAPSHOT.jar">
+            <element id="module-output" name="am-profit-dao" />
+          </element>
+          <element id="library" level="project" name="Maven: com.lejr:mybatis-spring-sharding:0.0.4-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:rocketmq-ext:0.0.2-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.3.1" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.2.4" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.25" />
+          <element id="library" level="project" name="Maven: com.jolbox:bonecp:0.8.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.5" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.5-x" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.9.2" />
+          <element id="library" level="project" name="Maven: org.apache.zookeeper:zookeeper:3.4.6" />
+          <element id="library" level="project" name="Maven: jline:jline:0.9.94" />
+          <element id="library" level="project" name="Maven: io.netty:netty:3.7.0.Final" />
+          <element id="library" level="project" name="Maven: com.101tec:zkclient:0.7" />
+          <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.20" />
+          <element id="library" level="project" name="Maven: com.lejr:marketing-promotion-rpc-api:0.2.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:am-task-interfaces:0.0.3-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:am-task-domain:0.0.3-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:trade-openapi-interfaces:0.0.6-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:am-accountant-interfaces:0.0.3-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:trade-touchcenter-interfaces:0.0.2-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.dts:dts-client:1.0.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.le.jr:jedis-ext:0.0.3" />
+          <element id="library" level="project" name="Maven: com.lejr:argus-client:0.0.5" />
+          <element id="library" level="project" name="Maven: com.alibaba:dubbo:2.8.4.2" />
+          <element id="library" level="project" name="Maven: com.le.jr:am-system-interfaces:0.0.1-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-asm:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.7.2" />
+          <element id="library" level="project" name="Maven: cglib:cglib-nodep:2.1_3" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/am-profit-web/target/am-profit-web-0.0.3-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="am-profit-web/web/Web" />
+    </root>
+  </artifact>
+</component>

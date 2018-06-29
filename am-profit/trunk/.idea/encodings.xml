@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/am-profit-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/am-profit-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/am-profit-domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/am-profit-interfaces" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/am-profit-interfacesimpl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/am-profit-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/am-profit-web" charset="UTF-8" />
+  </component>
+</project>

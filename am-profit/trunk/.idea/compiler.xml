@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="am-profit-common" />
+        <module name="am-profit-dao" />
+        <module name="am-profit-domain" />
+        <module name="am-profit-interfaces" />
+        <module name="am-profit-interfacesimpl" />
+        <module name="am-profit-service" />
+        <module name="am-profit-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="am-profit" target="1.7" />
+      <module name="am-profit-common" target="1.7" />
+      <module name="am-profit-dao" target="1.7" />
+      <module name="am-profit-domain" target="1.7" />
+      <module name="am-profit-interfaces" target="1.7" />
+      <module name="am-profit-interfacesimpl" target="1.7" />
+      <module name="am-profit-service" target="1.7" />
+      <module name="am-profit-web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

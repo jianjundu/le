@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd         
+						http://code.alibabatech.com/schema/dubbo         
+						http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <dubbo:consumer timeout="${dubbo.consumer.timeout}" check="${dubbo.consumer.check}"
+                    group="${dubbo.consumer.groupname}" version="${dubbo.consumer.version}"/>
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService
+       <dubbo:reference id="calculateProfitInterface" interfaces="com.le.jr.trade.financingbusiness.interfaces.CalculateProfitInterface"  />
+     -->
+
+
+    <dubbo:reference id="moneyLxSerfeeInterfaces"
+                     interface="com.le.jr.am.assetpool.interfaces.MoneyLxSerfeeInterfaces"/>
+    <dubbo:reference id="productInterfaces" interface="com.le.jr.am.product.interfaces.ProductInterfaces"/>
+    <dubbo:reference id="tradeCalendarInterface"
+                     interface="com.le.jr.am.system.interfaces.calendar.TradeCalendarInterface"/>
+    <dubbo:reference id="orderLogInterface" interface="com.le.jr.am.order.interfaces.OrderLogInterface"/>
+    <dubbo:reference id="channelInterfaces" interface="com.le.jr.am.channel.interfaces.ChannelInterfaces"/>
+   <!--  <dubbo:reference id="taskInterface" interface="com.le.jr.am.order.interfaces.TaskInterface"/> -->
+    <dubbo:reference id="fileInterface" interface="com.le.jr.am.system.interfaces.file.FileInterface"/>
+    <dubbo:reference id="orderInterface" interface="com.le.jr.am.order.interfaces.OrderInterface"/>
+    <dubbo:reference id="currentTradingInterface"
+                     interface="com.le.jr.trade.openapi.interfaces.trading.current.CurrentTradingInterface"/>
+    <dubbo:reference id="gamAssetpoolInterfaces" interface="com.le.jr.am.assetpool.interfaces.GamAssetpoolInterfaces"/>
+    <dubbo:reference id="spvInterfaces" interface="com.le.jr.am.channel.interfaces.SPVInterfaces"/>
+    <dubbo:reference id="productChannelOrderInterfaces"
+                     interface="com.le.jr.am.product.interfaces.ProductChannelOrderInterfaces"/>
+    <dubbo:reference id="accountingNotifyEntityInterface"
+                     interface="com.le.jr.am.accountant.interfaces.liabilities.AccountingNotifyEntityInterface"/>
+    <dubbo:reference id="gamAssetpoolEstimateInterfaces"
+                     interface="com.le.jr.am.assetpool.interfaces.GamAssetpoolEstimateInterfaces"/>
+    <dubbo:reference id="spvDocumentInterface"
+                     interface="com.le.jr.am.accountant.interfaces.acctbook.SPVDocumentInterface"/>
+    <dubbo:reference id="accountBookInterface"
+                     interface="com.le.jr.am.accountant.interfaces.acctbook.AccountBookInterface"/>
+    <!--任务-->
+    <dubbo:reference id="jobLockInterface" interface="com.le.jr.am.task.interfaces.JobLockInterface"/>
+    <dubbo:reference id="serialTaskInterface" interface="com.le.jr.am.task.interfaces.SerialTaskInterface"/>
+
+    <dubbo:reference id="quasiRealtimeTouchInterface" interface="com.le.jr.trade.touchcenter.interfaces.touch.QuasiRealtimeTouchInterface"/>
+
+
+    <dubbo:reference id="promotionServiceRpc" interface="com.lejr.marketing.promotion.rpc.api.PromotionServiceRpc"/>
+</beans>

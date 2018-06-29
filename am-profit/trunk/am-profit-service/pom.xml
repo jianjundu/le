@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.le.jr</groupId>
+        <artifactId>am-profit</artifactId>
+        <version>0.0.3-SNAPSHOT</version>
+    </parent>
+    <artifactId>am-profit-service</artifactId>
+
+    <dependencies>
+        <!-- 本项目 start -->
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-profit-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-profit-domain</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-profit-dao</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lejr</groupId>
+            <artifactId>marketing-promotion-rpc-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-task-interfaces</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-task-domain</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>trade-openapi-interfaces</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-data-mongodb</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-data-commons</artifactId>
+                </exclusion>
+
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-product-interfaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-order-interfaces</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-channel-interfaces</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-assetpool-interfaces</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-system-interfaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>am-accountant-interfaces</artifactId>
+        </dependency>
+        <!-- <dependency>
+                <groupId>com.guohuai</groupId>
+                <artifactId>gh-letv-operate-sdk</artifactId>
+            </dependency> -->
+
+		<dependency>
+			<groupId>com.le.jr</groupId>			       
+	    	<artifactId>trade-touchcenter-interfaces</artifactId>
+		</dependency>
+		
+        <dependency>
+            <groupId>com.le.dts</groupId>
+            <artifactId>dts-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.le.jr</groupId>
+            <artifactId>jedis-ext</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        
+        <dependency>
+				<groupId>com.lejr</groupId>
+				<artifactId>argus-client</artifactId>
+		</dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <!-- 默认生效 -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <!-- 测试环境 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+
+        <!-- 生产环境 -->
+        <profile>
+            <id>product</id>
+            <properties>
+                <env>product</env>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <filters>
+            <filter>src/test/resources/conf/config_${env}.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

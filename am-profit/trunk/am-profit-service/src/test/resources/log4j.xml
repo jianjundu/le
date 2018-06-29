@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%5p] [%d{yyyy-MM-dd HH:mm:ss SSS}] [%t] (%F:%L) %m%n"/>
+        </layout>
+    </appender>
+
+   <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="Threshold" value="INFO" />
+        <param name="File" value="/letv/Logs/am-profit/${serverName}/am-profit.log"/> <!-- 日志路径，根据实际情况修改 -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%5p] [%d{yyyy-MM-dd HH:mm:ss SSS}]  (%F:%L) %m%n"/>
+        </layout>
+    </appender>
+    
+    <category name="java.sql" additivity="true">
+		<priority value="info"/>
+		<appender-ref ref="CONSOLE"/>
+	</category>
+	
+	
+    <category name="com.le.jr.am.assetpool.service"
+				additivity="false"> 
+        <priority value="info"/>     
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </category>
+    
+    <root>
+        <priority value="info"/>      <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
+        <appender-ref ref="CONSOLE"/> <!-- 该appender需要在上线时删除，以免输出重复的日志到catalina.out文件 -->
+        <appender-ref ref="FILE"/>
+    </root>
+</log4j:configuration>

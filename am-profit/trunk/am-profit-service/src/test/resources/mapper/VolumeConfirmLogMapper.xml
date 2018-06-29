@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.VolumeConfirmLogMapper" >
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.VolumeConfirmLog" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="orderCode" property="orderCode" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, orderCode, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_HOLD_VOLUME_CONFIRM_LOG
+    where oid = #{oid,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_MONEY_PUBLISHER_HOLD_VOLUME_CONFIRM_LOG
+    where oid = #{oid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.le.jr.am.profit.domain.VolumeConfirmLog" >
+    insert into T_MONEY_PUBLISHER_HOLD_VOLUME_CONFIRM_LOG (oid, orderCode, createTime
+      )
+    values (#{oid,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.le.jr.am.profit.domain.VolumeConfirmLog" >
+    insert into T_MONEY_PUBLISHER_HOLD_VOLUME_CONFIRM_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="orderCode != null" >
+        orderCode,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.VolumeConfirmLog" >
+    update T_MONEY_PUBLISHER_HOLD_VOLUME_CONFIRM_LOG
+    <set >
+      <if test="orderCode != null" >
+        orderCode = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.le.jr.am.profit.domain.VolumeConfirmLog" >
+    update T_MONEY_PUBLISHER_HOLD_VOLUME_CONFIRM_LOG
+    set orderCode = #{orderCode,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据orderCode查询日志记录 -->
+  <select id="selectByOrderCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_HOLD_VOLUME_CONFIRM_LOG
+    where orderCode = #{orderCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

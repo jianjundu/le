@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- DTS客户端 -->
+    <!--<bean id="dtsClient" class="com.le.dts.client.DtsClient" init-method="init">-->
+        <!--<property name="groupId" value="${dts_groupId}" />-->
+        <!--<property name="consumerThreadsMap">-->
+            <!--<map>-->
+                <!--&lt;!&ndash;计息份额快照 &ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.AccrualInterestSnapshotDTS" value="5"/>-->
+                <!--&lt;!&ndash;自动派息通知 &ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.AutoAllotInterestNoticeWorkDTS" value="5"/>-->
+                <!--&lt;!&ndash;自动派息&ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.AutoDistributeProfitDTS" value="5"/>-->
+                <!--&lt;!&ndash;平台计提费 &ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.CalcSerFeeDTS" value="5"/>-->
+                <!--&lt;!&ndash;产品计息规模试算 &ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.ProfitTryPracticeDTS" value="5"/>-->
+                <!--&lt;!&ndash;创建投资人html协议&ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.PubliserProductAgreementHTMLDTS" value="5"/>-->
+                <!--&lt;!&ndash;上传投资人pdf协议&ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.PubliserProductAgreementPDFDTS" value="5"/>-->
+                <!--&lt;!&ndash;重置每日赎回份额&ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.ResetDayRedeemVolumeDTS" value="5"/>-->
+                <!--&lt;!&ndash;解锁计息份额&ndash;&gt;-->
+                <!--<entry key="com.le.jr.am.profit.service.work.dts.UnlockAccrualDTS" value="5"/>-->
+                <!--&lt;!&ndash;解锁赎回份额&ndash;&gt;-->
+                <!--<entry  key="com.le.jr.am.profit.service.work.dts.UnlockRedeemDTS" value="5"/>-->
+            <!--</map>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+   
+</beans>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="profitDiamondService" class="com.le.jr.am.profit.service.config.ProfitDiamondService" init-method="init">
+        <property name="dataId" value="profit_system_config"/>
+        <property name="groupId" value="com.le.jr.am.profit" />
+    </bean> 
+</beans>

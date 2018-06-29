@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.LevelIncomeMapper" >
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.LevelIncome" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="investorOid" property="investorOid" jdbcType="VARCHAR" />
+    <result column="holdOid" property="holdOid" jdbcType="VARCHAR" />
+    <result column="productOid" property="productOid" jdbcType="VARCHAR" />
+    <result column="rewardRuleOid" property="rewardRuleOid" jdbcType="VARCHAR" />
+    <result column="holdIncomeOid" property="holdIncomeOid" jdbcType="VARCHAR" />
+    <result column="incomeAmount" property="incomeAmount" jdbcType="DECIMAL" />
+    <result column="accureVolume" property="accureVolume" jdbcType="DECIMAL" />
+    <result column="value" property="value" jdbcType="DECIMAL" />
+    <result column="confirmDate" property="confirmDate" jdbcType="DATE" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, investorOid, holdOid, productOid, rewardRuleOid, holdIncomeOid, incomeAmount, 
+    accureVolume, value, confirmDate, updateTime, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME
+    where oid = #{oid,jdbcType=VARCHAR}
+  </select>
+ 
+  <insert id="insert" parameterType="com.le.jr.am.profit.domain.LevelIncome" >
+    insert into T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME (oid, investorOid, holdOid, 
+      productOid, rewardRuleOid, holdIncomeOid, 
+      incomeAmount, accureVolume, value, 
+      confirmDate, updateTime, createTime
+      )
+    values (#{oid,jdbcType=VARCHAR}, #{investorOid,jdbcType=VARCHAR}, #{holdOid,jdbcType=VARCHAR}, 
+      #{productOid,jdbcType=VARCHAR}, #{rewardRuleOid,jdbcType=VARCHAR}, #{holdIncomeOid,jdbcType=VARCHAR}, 
+      #{incomeAmount,jdbcType=DECIMAL}, #{accureVolume,jdbcType=DECIMAL}, #{value,jdbcType=DECIMAL}, 
+      #{confirmDate,jdbcType=DATE}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+  <insert id="saveList" parameterType="java.util.List" >
+    insert into T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME (oid, investorOid, holdOid, 
+      productOid, rewardRuleOid, holdIncomeOid, 
+      incomeAmount, accureVolume, value, 
+      confirmDate, updateTime, createTime
+      )
+       values
+       <foreach collection="list" item="obj" index="index" separator=",">
+    (#{obj.oid,jdbcType=VARCHAR}, #{obj.investorOid,jdbcType=VARCHAR}, #{obj.holdOid,jdbcType=VARCHAR}, 
+      #{obj.productOid,jdbcType=VARCHAR}, #{obj.rewardRuleOid,jdbcType=VARCHAR}, #{obj.holdIncomeOid,jdbcType=VARCHAR}, 
+      #{obj.incomeAmount,jdbcType=DECIMAL}, #{obj.accureVolume,jdbcType=DECIMAL}, #{obj.value,jdbcType=DECIMAL}, 
+      #{obj.confirmDate,jdbcType=DATE}, #{obj.updateTime,jdbcType=TIMESTAMP}, #{obj.createTime,jdbcType=TIMESTAMP}
+      )
+  </foreach>
+  
+   
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.LevelIncome" >
+    update T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME
+    <set >
+      <if test="investorOid != null" >
+        investorOid = #{investorOid,jdbcType=VARCHAR},
+      </if>
+      <if test="holdOid != null" >
+        holdOid = #{holdOid,jdbcType=VARCHAR},
+      </if>
+      <if test="productOid != null" >
+        productOid = #{productOid,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardRuleOid != null" >
+        rewardRuleOid = #{rewardRuleOid,jdbcType=VARCHAR},
+      </if>
+      <if test="holdIncomeOid != null" >
+        holdIncomeOid = #{holdIncomeOid,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeAmount != null" >
+        incomeAmount = #{incomeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accureVolume != null" >
+        accureVolume = #{accureVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=DECIMAL},
+      </if>
+      <if test="confirmDate != null" >
+        confirmDate = #{confirmDate,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  
+  
+   <select id="queryBalanceGroupByLevel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME
+   where investorOid = #{investorOid} and productOid = #{productOid} and confirmDate = #{confirmDate}
+  </select>
+  
+  <select id="queryBalanceGroupByLevelInHist" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME_
+   where investorOid = #{investorOid} and productOid = #{productOid} and confirmDate = #{confirmDate}
+  </select>
+  
+  
+   
+  
+  <select id="queryLevelIncomeCache" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+		
+		from T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME 
+		where updateTime <![CDATA[ >= ]]> #{start}
+		order by investorOid,productOid,confirmDate
+		;
+  </select>
+  <insert id="createAndBackupLevelIncome" >
+		INSERT INTO  T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME_  SELECT * FROM T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME WHERE confirmDate = #{queryDate};
+  </insert>
+  
+  <insert id="createTableLevelIncome" >
+    CREATE TABLE T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME_ LIKE T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME;
+  </insert>
+  <delete id="deleteLevelIncomeBackupData" >
+   delete from T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME where confirmDate = #{queryDate}
+  </delete>
+
+  
+  
+  <select id="queryBackupDate" resultType="java.util.Date">
+		SELECT distinct  confirmDate
+		 FROM T_MONEY_PUBLISHER_INVESTOR_LEVELINCOME 
+		 WHERE confirmDate <![CDATA[ <=]]> (DATE_SUB(CURDATE(),INTERVAL 5 DAY)) ORDER BY confirmDate
+	</select>
+
+
+	
+  
+  
+</mapper>

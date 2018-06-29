@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.IncomeEventMapper" >
+  <resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.IncomeEvent" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="assetPoolOid" property="assetPoolOid" jdbcType="VARCHAR" />
+    <result column="productOid" property="productOid" jdbcType="VARCHAR" />
+    <result column="baseDate" property="baseDate" jdbcType="DATE" />
+    <result column="allocateIncome" property="allocateIncome" jdbcType="DECIMAL" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="auditor" property="auditor" jdbcType="VARCHAR" />
+    <result column="auditTime" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, assetPoolOid,productOid,baseDate, allocateIncome, creator, createTime, auditor, auditTime, 
+    days, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_GAM_ASSETPOOL_INCOME_EVENT
+    where oid = #{oid,jdbcType=VARCHAR}
+    and  status !='DELETE'
+  </select>
+
+  <insert id="insert" parameterType="com.le.jr.am.profit.domain.IncomeEvent" >
+    insert into T_GAM_ASSETPOOL_INCOME_EVENT (oid, assetPoolOid,productOid, baseDate, 
+      allocateIncome, creator, createTime, 
+      auditor, auditTime, days, 
+      status)
+    values (#{oid,jdbcType=VARCHAR}, #{assetPoolOid,jdbcType=VARCHAR},#{productOid,jdbcType=VARCHAR}, #{baseDate,jdbcType=DATE}, 
+      #{allocateIncome,jdbcType=DECIMAL}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{auditor,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, #{days,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.IncomeEvent" >
+    update T_GAM_ASSETPOOL_INCOME_EVENT
+    <set >
+      <if test="assetPoolOid != null" >
+        assetPoolOid = #{assetPoolOid,jdbcType=VARCHAR},
+      </if>
+      <if test="productOid != null" >
+        productOid = #{productOid,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDate != null" >
+        baseDate = #{baseDate,jdbcType=DATE},
+      </if>
+      <if test="allocateIncome != null" >
+        allocateIncome = #{allocateIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditor != null" >
+        auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        auditTime = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="days != null" >
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  
+  
+   <select id="getLastIncomeEventByAssetPoolId"  resultMap="BaseResultMap">
+     select <include refid="Base_Column_List" />
+     from T_GAM_ASSETPOOL_INCOME_EVENT
+     where assetPoolOid = #{assetpooloid,jdbcType=VARCHAR} and productOid=#{productOid,jdbcType=VARCHAR}
+     and status !='DELETE' AND productOid is not null
+     ORDER BY baseDate DESC limit 1
+  </select>
+  
+   <select id="searchIncomeEvents" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_GAM_ASSETPOOL_INCOME_EVENT
+		where status != 'DELETE' AND productOid is not null
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="status != null">
+			AND status = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="noStatus != null">
+			AND status != #{noStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="assetPoolOid != null">
+			AND assetPoolOid = #{assetPoolOid,jdbcType=VARCHAR}
+		</if>
+		ORDER BY auditTime DESC
+	</select>
+	
+	 <select id="searchDistincProductEvents" resultType="java.lang.String">
+		select distinct productOid
+		from T_GAM_ASSETPOOL_INCOME_EVENT
+		where status != 'DELETE' AND productOid is not null
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="status != null">
+			AND status = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="noStatus != null">
+			AND status != #{noStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="assetPoolOid != null">
+			AND assetPoolOid = #{assetPoolOid,jdbcType=VARCHAR}
+		</if>
+		ORDER BY auditTime DESC
+	</select>
+  
+  
+  
+</mapper>

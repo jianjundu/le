@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.le.jr</groupId>
+		<artifactId>am-profit</artifactId>
+		<version>0.0.3-SNAPSHOT</version>
+	</parent>
+	<artifactId>am-profit-interfacesimpl</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.le.jr</groupId>
+			<artifactId>am-profit-domain</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.le.jr</groupId>
+			<artifactId>am-profit-common</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.le.jr</groupId>
+			<artifactId>am-profit-interfaces</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.le.jr</groupId>
+			<artifactId>am-profit-service</artifactId>
+		</dependency>
+
+
+		<!-- =================测试库 start======================= -->
+
+		<!-- JUNIT4 -->
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- spring-test -->
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- =================测试库 end========================= -->
+	</dependencies>
+	
+	<distributionManagement>
+		
+		<repository>
+			<id>letv-finance</id>
+			<name>libs-releases</name>
+			<url>http://10.11.145.88:8081/nexus/content/repositories/lejr-releases/</url>
+		</repository>
+		
+		<snapshotRepository>
+			<id>letv-finance</id>
+			<name>libs-snapshots</name>
+			<url>http://10.11.145.88:8081/nexus/content/repositories/lejr-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>

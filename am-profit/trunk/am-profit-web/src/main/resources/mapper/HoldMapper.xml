@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.le.jr.am.profit.dao.HoldMapper">
+	<resultMap id="BaseResultMap" type="com.le.jr.am.profit.domain.Hold">
+		<id column="oid" property="oid" jdbcType="VARCHAR" />
+		<result column="investorOid" property="investorOid" jdbcType="VARCHAR" />
+		<result column="productOid" property="productOid" jdbcType="VARCHAR" />
+		<result column="assetpoolOid" property="assetpoolOid" jdbcType="VARCHAR" />
+		<result column="publisherOid" property="publisherOid" jdbcType="VARCHAR" />
+		<result column="accountType" property="accountType" jdbcType="VARCHAR" />
+		<result column="totalHoldVolume" property="totalHoldVolume" jdbcType="DECIMAL" />
+		<result column="lockRedeemHoldVolume" property="lockRedeemHoldVolume" jdbcType="DECIMAL" />
+		<result column="redeemableHoldVolume" property="redeemableHoldVolume" jdbcType="DECIMAL" />
+		<result column="accruableHoldVolume" property="accruableHoldVolume" jdbcType="DECIMAL" />
+		<result column="value" property="value" jdbcType="DECIMAL" />
+		<result column="holdTotalIncome" property="holdTotalIncome" jdbcType="DECIMAL" />
+		<result column="totalBaseIncome" property="totalBaseIncome" jdbcType="DECIMAL" />
+		<result column="totalRewardIncome" property="totalRewardIncome" jdbcType="DECIMAL" />
+		<result column="investTotalVolume" property="investTotalVolume" jdbcType="DECIMAL" />
+		<result column="turnoverVolume" property="turnoverVolume" jdbcType="DECIMAL" />
+		<result column="holdYesterdayIncome" property="holdYesterdayIncome" jdbcType="DECIMAL" />
+		<result column="yesterdayBaseIncome" property="yesterdayBaseIncome" jdbcType="DECIMAL" />
+		<result column="yesterdayRewardIncome" property="yesterdayRewardIncome" jdbcType="DECIMAL" />
+		<result column="redeemableIncome" property="redeemableIncome" jdbcType="DECIMAL" />
+		<result column="dayRedeemVolume" property="dayRedeemVolume" jdbcType="DECIMAL" />
+		<result column="lockIncome" property="lockIncome" jdbcType="DECIMAL" />
+		<result column="expectIncome" property="expectIncome" jdbcType="DECIMAL" />
+		<result column="lastConfirmDate" property="lastConfirmDate" jdbcType="DATE" />
+		<result column="maxHoldVolume" property="maxHoldVolume" jdbcType="DECIMAL" />
+		<result column="holdStatus" property="holdStatus" jdbcType="VARCHAR" />
+		<result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="fundCode" property="fundCode" jdbcType="VARCHAR" />
+		<result column="totalMarketingIncome" property="totalMarketingIncome" jdbcType="DECIMAL" />
+		<result column="yesterdayMarketingIncome" property="yesterdayMarketingIncome" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		oid, investorOid, productOid, assetpoolOid, publisherOid,
+		accountType,
+		totalHoldVolume,
+		lockRedeemHoldVolume,
+		redeemableHoldVolume, accruableHoldVolume, value, holdTotalIncome,
+		totalBaseIncome, totalRewardIncome, investTotalVolume,
+		turnoverVolume,
+		holdYesterdayIncome,
+		yesterdayBaseIncome, yesterdayRewardIncome,
+		redeemableIncome, dayRedeemVolume, lockIncome,
+		expectIncome,
+		lastConfirmDate, maxHoldVolume, holdStatus, updateTime,
+		createTime,fundCode,totalMarketingIncome,yesterdayMarketingIncome
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD
+		where oid = #{oid,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insert" parameterType="com.le.jr.am.profit.domain.Hold">
+		insert into
+		T_MONEY_PUBLISHER_HOLD (oid, investorOid, productOid,
+		assetpoolOid,
+		publisherOid, accountType,
+		totalHoldVolume, lockRedeemHoldVolume,
+		redeemableHoldVolume, accruableHoldVolume,
+		value, holdTotalIncome,
+		totalBaseIncome,
+		totalRewardIncome, investTotalVolume, turnoverVolume,
+		holdYesterdayIncome, yesterdayBaseIncome,
+		yesterdayRewardIncome,
+		redeemableIncome,
+		dayRedeemVolume, lockIncome, expectIncome,
+		lastConfirmDate, maxHoldVolume, holdStatus,
+		updateTime,
+		createTime,fundCode,totalMarketingIncome,yesterdayMarketingIncome)
+		values (#{oid,jdbcType=VARCHAR}, #{investorOid,jdbcType=VARCHAR},
+		#{productOid,jdbcType=VARCHAR},
+		#{assetpoolOid,jdbcType=VARCHAR},
+		#{publisherOid,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR},
+		#{totalHoldVolume,jdbcType=DECIMAL},
+		#{lockRedeemHoldVolume,jdbcType=DECIMAL},
+		#{redeemableHoldVolume,jdbcType=DECIMAL},
+		#{accruableHoldVolume,jdbcType=DECIMAL},
+		#{value,jdbcType=DECIMAL},
+		#{holdTotalIncome,jdbcType=DECIMAL},
+		#{totalBaseIncome,jdbcType=DECIMAL},
+		#{totalRewardIncome,jdbcType=DECIMAL},
+		#{investTotalVolume,jdbcType=DECIMAL},
+		#{turnoverVolume,jdbcType=DECIMAL},
+		#{holdYesterdayIncome,jdbcType=DECIMAL},
+		#{yesterdayBaseIncome,jdbcType=DECIMAL},
+		#{yesterdayRewardIncome,jdbcType=DECIMAL},
+		#{redeemableIncome,jdbcType=DECIMAL},
+		#{dayRedeemVolume,jdbcType=DECIMAL}, #{lockIncome,jdbcType=DECIMAL},
+		#{expectIncome,jdbcType=DECIMAL},
+		#{lastConfirmDate,jdbcType=DATE},
+		#{maxHoldVolume,jdbcType=DECIMAL}, #{holdStatus,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},#{fundCode,jdbcType=VARCHAR},
+		#{totalMarketingIncome,jdbcType=DECIMAL},
+		#{yesterdayMarketingIncome,jdbcType=DECIMAL})
+	</insert>
+
+
+	<select id="selectHolds4Api" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD
+
+		where 1=1
+		<if test="investorOid != null">
+			AND investorOid = #{investorOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+		<if test="productOids !=null">
+			AND productOid IN
+			<foreach item="item" index="index" collection="productOids" open="(" separator="," close=")">
+				#{item,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+
+		<if test="accountType != null">
+			AND accountType = #{accountType,jdbcType=VARCHAR}
+		</if>
+
+		<if test="holdStatuss!=null">
+			AND holdStatus IN
+			<foreach item="item" index="index" collection="holdStatuss" open="(" separator="," close=")">
+				#{item.value,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+
+		ORDER BY updateTime DESC
+		<if test="offset!=null and pageSize!=null">
+			LIMIT #{offset,jdbcType=INTEGER} ,
+			#{pageSize,jdbcType=INTEGER}
+		</if>
+
+	</select>
+
+	<select id="selectCountHoldsApi" resultType="java.lang.Integer">
+
+		select
+		count(1)
+		from T_MONEY_PUBLISHER_HOLD
+
+		where 1=1
+		<if test="investorOid != null">
+			AND investorOid = #{investorOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="accountType != null">
+			AND accountType = #{accountType,jdbcType=VARCHAR}
+		</if>
+
+		<if test="holdStatuss!=null">
+			AND holdStatus IN
+			<foreach item="item" index="index" collection="holdStatuss" open="(" separator="," close=")">
+				#{item.value,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+
+		<if test="productOids !=null">
+			AND productOid IN
+			<foreach item="item" index="index" collection="productOids" open="(" separator="," close=")">
+				#{item,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+
+
+
+	</select>
+
+	<select id="selectHolds" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD
+
+		where 1=1
+		<if test="investorOid != null">
+			investorOid = #{investorOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="productOid != null">
+			AND productOid = #{productOid,jdbcType=VARCHAR}
+		</if>
+
+		<if test="accountType != null">
+			AND accountType = #{accountType,jdbcType=VARCHAR}
+		</if>
+
+		<if test="spvOid != null">
+			AND publisherOid = #{spvOid,jdbcType=VARCHAR}
+		</if>
+		<if test="assetPoolOid != null">
+			AND assetPoolOid = #{assetPoolOid,jdbcType=VARCHAR}
+		</if>
+
+
+
+		<if test="holdStatuss!=null">
+			AND holdStatus IN
+			<foreach item="item" index="index" collection="holdStatuss" open="(" separator="," close=")">
+				#{item.value,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+
+		ORDER BY updateTime DESC
+
+	</select>
+
+
+
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.le.jr.am.profit.domain.Hold">
+		update T_MONEY_PUBLISHER_HOLD
+		<set>
+			<if test="investorOid != null">
+				investorOid = #{investorOid,jdbcType=VARCHAR},
+			</if>
+			<if test="productOid != null">
+				productOid = #{productOid,jdbcType=VARCHAR},
+			</if>
+			<if test="assetpoolOid != null">
+				assetpoolOid = #{assetpoolOid,jdbcType=VARCHAR},
+			</if>
+			<if test="publisherOid != null">
+				publisherOid = #{publisherOid,jdbcType=VARCHAR},
+			</if>
+			<if test="accountType != null">
+				accountType = #{accountType,jdbcType=VARCHAR},
+			</if>
+			<if test="totalHoldVolume != null">
+				totalHoldVolume = #{totalHoldVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="lockRedeemHoldVolume != null">
+				lockRedeemHoldVolume =
+				#{lockRedeemHoldVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="redeemableHoldVolume != null">
+				redeemableHoldVolume =
+				#{redeemableHoldVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="accruableHoldVolume != null">
+				accruableHoldVolume =
+				#{accruableHoldVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="value != null">
+				value = #{value,jdbcType=DECIMAL},
+			</if>
+			<if test="holdTotalIncome != null">
+				holdTotalIncome = #{holdTotalIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="totalBaseIncome != null">
+				totalBaseIncome = #{totalBaseIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="totalRewardIncome != null">
+				totalRewardIncome =
+				#{totalRewardIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="investTotalVolume != null">
+				investTotalVolume =
+				#{investTotalVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="turnoverVolume != null">
+				turnoverVolume = #{turnoverVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="holdYesterdayIncome != null">
+				holdYesterdayIncome =
+				#{holdYesterdayIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="yesterdayBaseIncome != null">
+				yesterdayBaseIncome =
+				#{yesterdayBaseIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="yesterdayRewardIncome != null">
+				yesterdayRewardIncome =
+				#{yesterdayRewardIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="redeemableIncome != null">
+				redeemableIncome = #{redeemableIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="dayRedeemVolume != null">
+				dayRedeemVolume = #{dayRedeemVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="lockIncome != null">
+				lockIncome = #{lockIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="expectIncome != null">
+				expectIncome = #{expectIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="lastConfirmDate != null">
+				lastConfirmDate = #{lastConfirmDate,jdbcType=DATE},
+			</if>
+			<if test="maxHoldVolume != null">
+				maxHoldVolume = #{maxHoldVolume,jdbcType=DECIMAL},
+			</if>
+			<if test="holdStatus != null">
+				holdStatus = #{holdStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				updateTime = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fundCode != null">
+				fundCode = #{fundCode,jdbcType=VARCHAR},
+			</if>
+			<if test="totalMarketingIncome != null">
+				totalMarketingIncome = #{totalMarketingIncome,jdbcType=DECIMAL},
+			</if>
+			<if test="yesterdayMarketingIncome != null">
+				yesterdayMarketingIncome = #{yesterdayMarketingIncome,jdbcType=DECIMAL}
+			</if>
+		</set>
+		where oid = #{oid,jdbcType=VARCHAR}
+	</update>
+
+
+
+	<select id="findByInvestorOidAndProduct" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD
+		where investorOid =
+		#{investorOid,jdbcType=VARCHAR} and productOid =
+		#{productOid,jdbcType=VARCHAR}
+	</select>
+
+
+	<update id="invest">
+		update T_MONEY_PUBLISHER_HOLD
+		set
+		investTotalVolume=investTotalVolume + #{volume,jdbcType=DECIMAL},
+		totalHoldVolume=totalHoldVolume + #{volume,jdbcType=DECIMAL},
+		value =totalHoldVolume * #{netUnitShare,jdbcType=DECIMAL},
+		lockRedeemHoldVolume=lockRedeemHoldVolume+#{volume,jdbcType=DECIMAL},
+		updateTime =sysdate()
+		where oid =#{holdOid,jdbcType=VARCHAR}
+	</update>
+
+
+	
+	<update id="redeem">
+		update T_MONEY_PUBLISHER_HOLD set
+		totalHoldVolume =totalHoldVolume - #{volume,jdbcType=DECIMAL},
+		maxHoldVolume =
+		case when maxHoldVolume >= #{volume} then maxHoldVolume - #{volume} else 0 end,
+		accruableHoldVolume =
+		case when accruableHoldVolume >= #{volume} then accruableHoldVolume- #{volume} else 0 end ,
+		lockRedeemHoldVolume = lockRedeemHoldVolume - #{volume},
+		value =totalHoldVolume *#{netUnitShare},
+		updateTime =sysdate()
+		where investorOid = #{investorOid}
+		AND productOid =#{productOid}
+		AND lockRedeemHoldVolume-#{volume} >= 0
+		AND totalHoldVolume - #{volume} >=0
+	</update>
+
+	<update id="invest4Abandon">
+		update T_MONEY_PUBLISHER_HOLD set
+		totalHoldVolume =totalHoldVolume - #{volume},
+		lockRedeemHoldVolume =lockRedeemHoldVolume -#{volume},
+		value = totalHoldVolume * #{netUnitShare}
+		where investorOid = #{investorOid}
+		and productOid= #{productOid}
+		and lockRedeemHoldVolume - #{volume} >= 0
+		and totalHoldVolume - #{volume}>= 0
+	</update>
+	<update id="unlockAccrual">
+		update T_MONEY_PUBLISHER_HOLD set
+		accruableHoldVolume = accruableHoldVolume + #{volume}
+		where oid =#{holdOid}
+	</update>
+	<update id="unlockRedeem">
+		update T_MONEY_PUBLISHER_HOLD set
+		lockRedeemHoldVolume=lockRedeemHoldVolume-#{volume},redeemableHoldVolume=redeemableHoldVolume+#{volume},
+		updateTime = sysdate()
+		where oid = #{holdOid}
+		and lockRedeemHoldVolume-#{volume}>=0
+	</update>
+	<update id="redeem4Abandon">
+		update T_MONEY_PUBLISHER_HOLD set
+		lockRedeemHoldVolume = lockRedeemHoldVolume - #{volume},
+		redeemableHoldVolume = redeemableHoldVolume + #{volume}
+		where
+		investorOid = #{investorOid}
+		and productOid = #{productOid}
+		and lockRedeemHoldVolume - #{volume} >= 0
+
+	</update>
+	<update id="redeem4AbandonOfDayRedeemVolume">
+		update
+		T_MONEY_PUBLISHER_HOLD
+		set dayRedeemVolume =dayRedeemVolume - #{orderVolume}
+		where investorOid = #{investorOid}
+		and productOid =#{productOid}
+		and dayRedeemVolume >=#{orderVolume}
+
+
+	</update>
+
+	<select id="findByProduct">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD
+		where productOid = #{productOid,jdbcType=VARCHAR}
+
+	</select>
+
+	<update id="currentCalc">
+		update T_MONEY_PUBLISHER_HOLD set
+		totalHoldVolume=totalHoldVolume+#{addHoldVolume},
+		redeemableHoldVolume=redeemableHoldVolume+#{addHoldVolume},
+		holdTotalIncome=holdTotalIncome+#{interest},
+		holdYesterdayIncome=#{interest},
+		incomeAmount=incomeAmount+#{interest},
+		value=totalHoldVolume*#{netUnitShare},
+		lastConfirmDate=#{incomeDate},
+		updateTime=sysdate() where oid=#{hoid}
+	</update>
+	<select id="findByProductAndHoldStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD
+		where productOid = #{productOid}
+		and holdStatus =#{holdStatus}
+		and oid > #{holdOid}
+		and accountType =#{accountType}
+		and lastConfirmDate  <![CDATA[ < ]]>
+		#{incomeDate}
+		order by oid limit 1000
+	</select>
+
+
+	<!--  * 
+	 * @param holdOid 合仓OID
+	 * @param holdInterestVolume 可计息的利息份额 
+	 * @param holdInterestAmount 可计息的利息金额
+	 * @param lockHoldInterestVolume 不可计息的利息份额 
+	 * @param lockHoldInterestAmount 不可计息的利息金额
+	 * @param netUnitAmount 单位净值
+	 * @param incomeDate 派息日
+	 * @param holdInterestBaseAmount 合仓基础收益
+	 * @param holdInterestRewardAmount 合仓奖励收益
+	 * @return -->
+	 
+	<update id="updateHold4Interest">
+		update T_MONEY_PUBLISHER_HOLD
+		set totalHoldVolume =totalHoldVolume+#{holdInterestVolume}+#{lockHoldInterestVolume},
+		redeemableHoldVolume =redeemableHoldVolume +#{holdInterestVolume},
+		lockRedeemHoldVolume = lockRedeemHoldVolume + #{lockHoldInterestVolume},
+		holdTotalIncome =holdTotalIncome + #{holdInterestAmount}+#{lockHoldInterestAmount},
+		holdYesterdayIncome=IF(DATE_SUB(CURDATE(),INTERVAL 1 DAY) = #{incomeDate},#{holdInterestAmount} + #{lockHoldInterestAmount},0),
+		value =totalHoldVolume *#{netUnitAmount},
+		totalBaseIncome = totalBaseIncome+#{holdInterestBaseAmount},
+		totalRewardIncome = totalRewardIncome +#{holdInterestRewardAmount},
+		totalMarketingIncome = totalMarketingIncome+#{holdInterestMarketingAmount},
+		yesterdayBaseIncome =IF(DATE_SUB(CURDATE(),INTERVAL 1 DAY) = #{incomeDate},#{holdInterestBaseAmount},0),
+		yesterdayRewardIncome =IF(DATE_SUB(CURDATE(),INTERVAL 1 DAY) = #{incomeDate},#{holdInterestRewardAmount},0),
+		yesterdayMarketingIncome =IF(DATE_SUB(CURDATE(),INTERVAL 1 DAY) = #{incomeDate},#{holdInterestMarketingAmount},0),
+		lastConfirmDate = #{incomeDate},
+		 updateTime=sysdate() 
+		where oid = #{holdOid}
+	</update>
+
+
+
+	<select id="findByAssetPoolEntityAndSPV" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD e
+		where e.assetPool = #{assetPoolOid} 
+		and e.publisherBaseAccount = #{spvId} 
+		and e.accountType='SPV'
+
+	</select>
+	<select id="selectHoldByDate" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD e 
+		where investorOid is not null 
+		and updateTime  <![CDATA[ >= ]]>#{startDate}
+	
+	</select>
+	<select id="findByProductAndHoldStatus4lx" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD e 
+		 where productOid = #{productOid} 
+		 and holdStatus = #{holdStatus} 
+		 and oid > #{holdOid} 
+		 and accountType = #{holdAccountType} 
+	     order by oid limit 1000
+	
+	</select>
+
+	<update id="updateSpvHold4InvestAbandon">
+		update
+		T_MONEY_PUBLISHER_HOLD set
+		lockRedeemHoldVolume = lockRedeemHoldVolume - #{orderVolume} 
+		where productOid = #{productOid}
+		and accountType = #{accountType} 
+		and lockRedeemHoldVolume >= #{orderVolume}
+		
+	</update>
+	<update id="updateMaxHold4InvestAbandon">
+		update
+		T_MONEY_PUBLISHER_HOLD 
+		set maxHoldVolume =maxHoldVolume - #{orderVolume} 
+		where productOid = #{productOid} 
+		and investorOid = #{investorOid} 
+		and maxHoldVolume >= #{orderVolume}
+	</update>
+
+
+	<select id="isInvestorExists" resultType="java.lang.Integer">
+		select count(1) from
+		T_MONEY_PUBLISHER_HOLD 
+		where investorOid = #{investorOid} 
+		and productOid = #{productOid} 
+		and accountType = 'INVESTOR'
+	</select>
+	<update id="resetDayRedeemVolume">
+		update T_MONEY_PUBLISHER_HOLD
+		set dayRedeemVolume =0,
+		holdYesterdayIncome = 0,
+		yesterdayBaseIncome =0,
+		yesterdayRewardIncome =0
+		where dayRedeemVolume > 0 or holdYesterdayIncome > 0
+	</update>
+	<update id="updateHold4Confirm">
+		update T_MONEY_PUBLISHER_HOLD
+		set
+		lockRedeemHoldVolume = lockRedeemHoldVolume + #{lockRedeemHoldVolume},
+		redeemableHoldVolume = redeemableHoldVolume + #{redeemableHoldVolume},
+		accruableHoldVolume = accruableHoldVolume + #{accruableHoldVolume},
+		updateTime=sysdate() 
+		 where oid = #{holdOid}
+	</update>
+
+	<update id="updateMaxHold4Invest">
+		update T_MONEY_PUBLISHER_HOLD 
+		set maxHoldVolume = maxHoldVolume + #{orderVolume}
+		where productOid = #{productOid} 
+		and investorOid = #{investorOid}
+		and maxHoldVolume + #{orderVolume}  <![CDATA[ <= ]]> #{proMaxHoldVolume}
+	</update>
+	
+	<update id="update4RedeemConfirm">
+		update T_MONEY_PUBLISHER_HOLD
+		set totalHoldVolume = totalHoldVolume + #{orderVolume}
+		 where productOid = #{product} 
+		and accountType = #{accountType}
+	</update>
+	<update id="update4InvestConfirm">
+		update T_MONEY_PUBLISHER_HOLD
+		set
+		lockRedeemHoldVolume = lockRedeemHoldVolume - #{orderVolume},
+		totalHoldVolume = totalHoldVolume - #{orderVolume},
+		lastConfirmDate = CURRENT_DATE(),
+		updateTime = CURRENT_DATE()
+		where
+		productOid = #{productOid}
+		and accountType = #{publisherAccounttypeSpv}
+		and totalHoldVolume >= #{orderVolume}
+		and lockRedeemHoldVolume >= #{orderVolume}
+		
+
+	</update>
+	<update id="updateSpvHold4Invest">
+		update T_MONEY_PUBLISHER_HOLD set
+		lockRedeemHoldVolume =lockRedeemHoldVolume + #{orderVolume} 
+		where productOid = #{productOid}
+		and accountType = #{accountType}
+		and totalHoldVolume - lockRedeemHoldVolume >= #{orderVolume}
+
+	</update>
+	<update id="spvOrderRedeemConfirm">
+		update T_MONEY_PUBLISHER_HOLD
+		set totalHoldVolume = totalHoldVolume - #{orderAmount},
+		updateTime = sysdate()
+		where oid = #{oid}
+		and totalHoldVolume-lockRedeemHoldVolume >=#{orderAmount}
+
+	</update>
+	<update id="spvOrderInvestConfirm">
+		update T_MONEY_PUBLISHER_HOLD
+		set totalHoldVolume = totalHoldVolume + #{orderAmount,jdbcType=DECIMAL},
+		updateTime = sysdate()
+		where oid = #{oid}
+
+	</update>
+    <select id="findHoldNumByPid" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM T_MONEY_PUBLISHER_HOLD WHERE productOid= #{0} AND accountType='INVESTOR'
+	</select>
+	
+	
+	<select id="selectByInvestorOidAndProductOid4Update" resultMap="BaseResultMap">
+		SELECT 	<include refid="Base_Column_List" />
+		from T_MONEY_PUBLISHER_HOLD
+		where investorOid = #{investorOid,jdbcType=VARCHAR}
+		and productOid = #{productOid,jdbcType=VARCHAR}
+		for update
+	</select>
+	
+
+
+
+
+</mapper>
